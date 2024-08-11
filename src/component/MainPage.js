@@ -4,8 +4,8 @@ import faranacrane from "../assets/faranacrane.png"
 import crawlercranes from "../assets/Crawler Cranes.png"
 import mobilecranes from "../assets/mobileCrain.png"
 import { Link, useNavigate } from 'react-router-dom'
-import 'aos/dist/aos.css'; 
-import AOS from 'aos'; 
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 import mainImg from "../assets/mainImg.png"
 
 
@@ -13,14 +13,14 @@ function MainPage() {
 
     useEffect(() => {
         AOS.init({ duration: 2000 }); // Adjust duration as needed
-      }, []);
+    }, []);
 
     const navigate = useNavigate();
     return (
         <div>
             <div className="section__container_main header__container" id="home">
                 <div className="header__image" >
-                    <img src={mainImg} alt="header"  data-aos="fade-left" />
+                    <img src={mainImg} alt="header" data-aos="fade-left" />
                 </div>
                 <div className="header__content" data-aos="fade-up">
                     <h1>Welcome to <span>Nagpur Cranes</span> Service.</h1>
@@ -106,16 +106,19 @@ function MainPage() {
                 <div className='section__container_map' >
 
                     <div style={{ width: '100%', height: '450px', overflow: 'hidden' }}>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d1860.5259595821913!2d79.00438900000002!3d21.150332!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDA5JzAwLjAiTiA3OcKwMDAnMTUuOCJF!5e0!3m2!1sen!2sus!4v1722630257461!5m2!1sen!2sus"
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3721.366827788006!2d78.95019837525959!3d21.137795080538996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjHCsDA4JzE2LjEiTiA3OMKwNTcnMTAuMCJF!5e0!3m2!1sen!2sin!4v1723359242062!5m2!1sen!2sin"
                             width="100%"
                             height="100%"
                             style={{ border: '0' }}
-                            allowFullScreen
+                            allowfullscreen
                             loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
+                            referrerpolicy="no-referrer-when-downgrade"
                             title="Google Maps Location"
-                        ></iframe>
+
+                        >
+
+                        </iframe>
+
                     </div>
 
                 </div>
@@ -148,9 +151,9 @@ function MainPage() {
                             </div>
                         </div>
                         <div className="col-lg-12 col-sm-12">
-                            <div className="map_text"><Link to="https://maps.app.goo.gl/hb8HtDtNTgWQcLt79"target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined location_icon">
+                            <div className="map_text"><Link to="https://maps.app.goo.gl/yuQYcNKiiSNef5AU7" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined location_icon">
                                 location_on
-                            </span><span className="">Plot No. 128 Behind Solitaire Hotel, Near Toll Tax  MIDC Road Wadi Nagpur-440028</span></Link></div>
+                            </span><span className="">Plot no. 1154 Ward no. 3 Dobinagar  Wadadhamana Amaravati Road Nagpur-440023</span></Link></div>
 
                         </div>
                     </div>

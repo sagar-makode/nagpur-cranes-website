@@ -76,7 +76,7 @@ function Navbar() {
                   </Link>
                 </div>
                 <div className="map_text">
-                  <Link to="https://maps.app.goo.gl/hb8HtDtNTgWQcLt79"target="_blank" rel="noopener noreferrer">
+                  <Link to="https://maps.app.goo.gl/yuQYcNKiiSNef5AU7"target="_blank" rel="noopener noreferrer">
                     <span className="material-symbols-outlined location_icon">location_on</span>
                   </Link>
                 </div>

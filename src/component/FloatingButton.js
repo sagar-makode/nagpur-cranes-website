@@ -30,7 +30,7 @@ function FloatingButton() {
         backgroundColor="white"
         size={46}
          className="floating-menu__item"
-        onClick={() => window.open('https://maps.app.goo.gl/hb8HtDtNTgWQcLt79', '_blank')}
+        onClick={() => window.open('https://maps.app.goo.gl/yuQYcNKiiSNef5AU7', '_blank')}
     />
     <ChildButton
         icon={<MdEmail style={{ fontSize: 20, color:"#0078d4" }} />}

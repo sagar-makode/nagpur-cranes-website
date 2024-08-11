@@ -35,9 +35,9 @@ function ContactUs() {
 
                  
                     <div className="col-lg-12 col-sm-12">
-                        <div className="map_text_contactus"><Link to="https://maps.app.goo.gl/hb8HtDtNTgWQcLt79" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined location_icon_contactus">
+                        <div className="map_text_contactus"><Link to="https://maps.app.goo.gl/yuQYcNKiiSNef5AU7" target="_blank" rel="noopener noreferrer"><span className="material-symbols-outlined location_icon_contactus">
                             location_on
-                        </span><span className="">Plot No. 128 Behind Solitaire Hotel, Near Toll Tax  MIDC Road Wadi Nagpur-440028</span> </Link></div>
+                        </span><span className="">Plot no. 1154 Ward no. 3 Dobinagar  Wadadhamana Amaravati Road Nagpur-440023</span> </Link></div>
 
                     </div>
                 </div>
