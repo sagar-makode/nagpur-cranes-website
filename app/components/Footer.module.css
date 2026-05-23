@@ -1,0 +1,267 @@
+.footer {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+  padding: 80px 0 0;
+  font-family: var(--font-body);
+}
+
+.footerContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 40px;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.03em;
+}
+
+.logoYellow {
+  color: var(--text-primary);
+}
+
+.logoWhite {
+  color: var(--accent-primary);
+}
+
+.pitchText {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.certifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.certBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.certIcon {
+  color: var(--accent-primary);
+}
+
+.columnTitle {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  position: relative;
+  padding-bottom: 8px;
+  font-family: var(--font-heading);
+}
+
+.columnTitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--accent-primary);
+}
+
+.footerLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLink {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--accent-primary);
+  padding-left: 4px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contactIconContainer {
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  color: var(--accent-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contactDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contactLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.contactValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  transition: var(--transition-fast);
+}
+
+.contactValue:hover {
+  color: var(--accent-primary);
+}
+
+.addressValue {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.addressValue:hover {
+  color: var(--text-primary);
+}
+
+/* ERP tech badge */
+.erpBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--brand-50);
+  border: 1px solid var(--brand-100);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  position: relative;
+  overflow: hidden;
+}
+
+.erpGlow {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(70, 95, 255, 0.2), transparent);
+  animation: shine 3s infinite linear;
+}
+
+@keyframes shine {
+  0% { left: -50%; }
+  100% { left: 150%; }
+}
+
+.erpNote {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 8px;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-tertiary);
+  padding: 30px 0;
+}
+
+.bottomContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.bottomLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.bottomLinks a:hover {
+  color: var(--accent-primary);
+}
+
+.divider {
+  color: var(--text-muted);
+}
+
+/* Responsive Grid Adapting */
+@media (max-width: 968px) {
+  .footerContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 40px;
+  }
+  
+  .bottomContainer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

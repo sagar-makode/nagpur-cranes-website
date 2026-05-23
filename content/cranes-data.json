@@ -1,0 +1,89 @@
+[
+  {
+    "slug": "farana-cranes",
+    "title": "Farana Pick & Carry Cranes",
+    "caption": "High-efficiency heavy lifting pick-and-carry farana cranes ranging from 15 to 30 tons.",
+    "capacity": "15 to 30 Tons",
+    "image": "/assets/faranacrane.png",
+    "overview": "We specialize in providing high-quality Farana cranes with lifting capacities ranging from 15 to 30 tons. Our competitively priced cranes are ideal for a variety of pick-and-carry operations, offering exceptional performance, high maneuverability, and reliable service in Central India.",
+    "benefits": [
+      {"title": "Compact Design", "desc": "Perfectly suited for narrow workspaces and congested project sites."},
+      {"title": "Unmatched Versatility", "desc": "Highly effective for moving loads across industrial yards and construction environments."},
+      {"title": "Rapid Setup", "desc": "Quick deployment saves valuable operational time and boosts onsite productivity."},
+      {"title": "Safety Engineered", "desc": "Equipped with advanced load moment indicators (LMI) and stable hydraulic outriggers."},
+      {"title": "Exceptional Durability", "desc": "Built to endure the most rigorous industrial tasks and harsh operating conditions."}
+    ],
+    "applications": [
+      "Urban Infrastructure & Commercial Construction",
+      "Industrial Plant Yard Operations",
+      "Logistics, Heavy Cargo Loading & Transportation",
+      "Plant Maintenance & Equipment Relocation",
+      "Emergency Lifting & Heavy Accident Responses"
+    ],
+    "specs": [
+      {"label": "Lifting Capacity", "value": "15 to 30 Tons"},
+      {"label": "Max Boom Length", "value": "Up to 24 Meters"},
+      {"label": "Engine Power", "value": "75 HP to 101 HP"},
+      {"label": "Max Travel Speed", "value": "30 km/h"},
+      {"label": "Hydraulic System", "value": "Heavy duty multi-spool valve controls"}
+    ]
+  },
+  {
+    "slug": "mobile-cranes",
+    "title": "Mobile & Telescopic Cranes",
+    "caption": "Premium heavy-duty mobile and telescopic cranes ranging from 30 tons to 400 tons.",
+    "capacity": "30 to 400 Tons",
+    "image": "/assets/mobileCrain.png",
+    "overview": "We offer top-of-the-line mobile and telescopic cranes with lifting capacities starting from 30 tons all the way up to 400 tons. Engineered for high-altitude heavy lifting and rapid street transit, our fleet represents the peak of reliability and precision engineering in Central India.",
+    "benefits": [
+      {"title": "High Reach Capability", "desc": "Telescopic booms extend to incredible heights with full stability."},
+      {"title": "Extreme Lift Capacity", "desc": "From 30 tons for everyday lifts to 400 tons for massive industrial blocks."},
+      {"title": "Road-Friendly Transit", "desc": "Excellent mobility on state and national highways for fast transit to your site."},
+      {"title": "Advanced Precision Controls", "desc": "State-of-the-art computer-aided hoisting for millimeter-accurate positioning."},
+      {"title": "Certified Operators", "desc": "Operated by certified, highly experienced pros prioritizing absolute safety."}
+    ],
+    "applications": [
+      "High-rise Structural Steel Erection",
+      "Bridge, Metro, and Flyover Construction",
+      "Windmill and Turbine Assembly",
+      "Oil & Gas Pipeline Layouts",
+      "Heavy Machinery Assembly and Commissioning"
+    ],
+    "specs": [
+      {"label": "Lifting Capacity", "value": "30 to 400 Tons"},
+      {"label": "Max Hook Height", "value": "Up to 110 Meters"},
+      {"label": "Boom Type", "value": "Multi-section Telescopic Boom"},
+      {"label": "Drive Configuration", "value": "All-Terrain 8x8 / 10x8"},
+      {"label": "Safety Systems", "value": "Automatic Safe Load Indicators (SLI)"}
+    ]
+  },
+  {
+    "slug": "crawler-cranes",
+    "title": "Heavy Crawler Cranes",
+    "caption": "Ultimate stability heavy-duty lattice boom crawler cranes from 100 to 400 tons.",
+    "capacity": "100 to 400 Tons",
+    "image": "/assets/Crawler Cranes.png",
+    "overview": "For the largest structural works and longest assembly tasks, we supply lattice boom crawler cranes spanning 100 to 400 tons. With tracked chassis, they offer unmatched ground stability and high lifting capacities in all terrains and soil types.",
+    "benefits": [
+      {"title": "Maximum Base Stability", "desc": "Tracked crawl pads distribute weight perfectly over soft or uneven soils."},
+      {"title": "Lattice Boom Structure", "desc": "Provides extreme structural strength with minimal wind resistance at high altitudes."},
+      {"title": "Travel with Load", "desc": "Capable of crawling and moving with fully suspended heavy loads safely."},
+      {"title": "Modular Configuration", "desc": "Highly customizable boom lengths and counterweight options for your exact needs."},
+      {"title": "Long-Term Rental Efficiency", "desc": "Perfect for continuous heavy lifting on mega projects like power plants and dams."}
+    ],
+    "applications": [
+      "Thermal & Hydro Power Plant Construction",
+      "Refinery Operations & Reactor Vessel Erection",
+      "Dam Gates & Heavy Hydraulic Structures",
+      "Massive Subway & Railway Underpasses",
+      "Large-scale Shipyards and Port Operations"
+    ],
+    "specs": [
+      {"label": "Lifting Capacity", "value": "100 to 400 Tons"},
+      {"label": "Boom Type", "value": "High-Strength Lattice Steel Boom"},
+      {"label": "Max Lattice Length", "value": "Up to 96 Meters"},
+      {"label": "Crawler Track Width", "value": "800 mm to 1200 mm"},
+      {"label": "Operational Stability", "value": "Superior 360-degree continuous lifting"}
+    ]
+  }
+]

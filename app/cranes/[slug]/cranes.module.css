@@ -1,0 +1,291 @@
+.main {
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+
+.backNav {
+  margin-bottom: 30px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.backLink:hover {
+  color: var(--accent-primary);
+  transform: translateX(-4px);
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.productMedia {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 100px;
+}
+
+.imageCard {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-secondary);
+}
+
+.craneImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capacityBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--accent-primary);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-md);
+}
+
+.certifiedBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.02);
+  border: 1px solid var(--border-light);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.productSpecs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+.overview {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Specs table */
+.specsTable {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.tableTitle {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+  font-family: var(--font-heading);
+}
+
+.tableRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tableRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.tableRow:last-child {
+  border: none;
+  padding: 0;
+}
+
+.specLabel {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.specValue {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+/* Action call card */
+.actionCard {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.actionCard h4 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.actionCard p {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.actionRow {
+  display: flex;
+  gap: 12px;
+}
+
+/* Extra Section: Benefits and Apps */
+.extraSection {
+  margin-top: 80px;
+  border-top: 1px solid var(--border-light);
+  padding-top: 60px;
+}
+
+.sectionSplit {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+}
+
+.splitColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.splitColumn h3 {
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+}
+
+.benefitsList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.bulletCheck {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.benefitItem strong {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  font-family: var(--font-heading);
+}
+
+.benefitItem p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.appsList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  padding: 30px;
+  border-radius: var(--radius-lg);
+}
+
+.appItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appIcon {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.appItem span {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Responsive grid overrides */
+@media (max-width: 968px) {
+  .detailsGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .productMedia {
+    position: relative;
+    top: 0;
+  }
+  
+  .sectionSplit {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

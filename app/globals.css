@@ -1,0 +1,493 @@
+/* 
+  Nagpur Cranes Service — Futuristic 2026-Grade Design System
+  Style Direction: Dynamic Glassmorphism, Aurora Glowing Accents, Tech-Industrial Elegant Grids
+  Fonts: Space Grotesk (Headers), Plus Jakarta Sans (Body)
+  Accent: Premium Brand Blue (#465FFF)
+*/
+
+:root {
+  /* Brand Colors — High Fidelity */
+  --brand-50: #ecf3ff;
+  --brand-100: #dde9ff;
+  --brand-200: #c2d6ff;
+  --brand-300: #9cb9ff;
+  --brand-400: #7592ff;
+  --brand-500: #465fff; /* Futuristic Royal Blue */
+  --brand-600: #3641f5;
+  --brand-700: #2a31d8;
+
+  --accent-primary: var(--brand-500);
+  --accent-secondary: var(--brand-600);
+
+  /* Accent Highlight (Industrial Fusion) */
+  --accent-gold: #ffb800;
+  --accent-glow: rgba(70, 95, 255, 0.12);
+  --accent-radial: radial-gradient(circle at center, rgba(70, 95, 255, 0.15) 0%, transparent 65%);
+
+  /* Gray Scale — High Contrast Clean Slate */
+  --gray-25: #fafafb;
+  --gray-50: #f4f5f8;
+  --gray-100: #eef0f5;
+  --gray-200: #e2e5ec;
+  --gray-300: #cfd4e0;
+  --gray-400: #9ba3b5;
+  --gray-500: #697386;
+  --gray-600: #4f566b;
+  --gray-700: #3c4257;
+  --gray-800: #202329;
+  --gray-900: #0a0b0d;
+
+  /* Theme semantic maps */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --border-light: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.25);
+  --border-brand-glow: rgba(70, 95, 255, 0.35);
+
+  /* Fonts */
+  --font-heading: var(--font-montserrat), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+
+  /* Radii - Extremely modern smooth shapes */
+  --radius-xl: 20px;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 9999px;
+
+  /* Luxury shadows */
+  --shadow-sm: 0 2px 8px -1px rgba(70, 95, 255, 0.03), 0 1px 3px -1px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 12px 24px -4px rgba(70, 95, 255, 0.05), 0 4px 12px -2px rgba(70, 95, 255, 0.02);
+  --shadow-lg: 0 20px 40px -8px rgba(70, 95, 255, 0.08), 0 8px 16px -4px rgba(0, 0, 0, 0.02);
+  --shadow-glow: 0 0 30px rgba(70, 95, 255, 0.25);
+
+  /* Transition timings */
+  --transition-luxury: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--gray-900);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Beautiful Aurora Ambient Glow Background */
+.aurora-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+.aurora-1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(70, 95, 255, 0.2) 0%, transparent 80%);
+  top: -10%;
+  right: -5%;
+}
+
+.aurora-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(70, 95, 255, 0.15) 0%, transparent 80%);
+  bottom: 20%;
+  left: -10%;
+}
+
+/* Main Container spacing */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* 2026-Grade Premium Floating Glass Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-luxury);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(70, 95, 255, 0.15), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: var(--transition-luxury);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px) scale(1.005);
+  border-color: rgba(70, 95, 255, 0.25);
+  box-shadow: var(--shadow-md);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Fancy Buttons with Shiny Shimmer Effect */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--brand-500) 0%, var(--brand-600) 100%);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(70, 95, 255, 0.25);
+  transition: var(--transition-luxury);
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  transition: 0.75s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-700) 100%);
+  box-shadow: 0 8px 25px rgba(70, 95, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover::after {
+  left: 150%;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Luxury Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-luxury);
+  font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Outline Button for Light Backgrounds */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--accent-primary);
+  border: 1px solid var(--accent-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-luxury);
+  font-size: 0.95rem;
+}
+
+.btn-outline:hover {
+  background: var(--brand-50);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(70, 95, 255, 0.15);
+}
+
+/* Futuristic Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--gray-900) 30%, var(--brand-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Inputs with glowing focal ring */
+.input-field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: var(--transition-luxury);
+  box-shadow: var(--shadow-sm);
+}
+
+.input-field:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 4px rgba(70, 95, 255, 0.15);
+}
+
+/* Fancy Capsule Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-amber {
+  background: var(--brand-50);
+  color: var(--brand-500);
+  border: 1px solid var(--brand-100);
+}
+
+/* Map frames container */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-25);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+@media (max-width: 768px) {
+  .section-header h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Bulletproof High-Specificity Brand Logo Overrides */
+.logoYellow, [class*="logoYellow"] {
+  color: #0b0f19 !important; /* solid black/slate */
+}
+.logoWhite, [class*="logoWhite"] {
+  color: #465fff !important; /* solid brand blue */
+}
+
+/* ============================================================
+   Global Micro-Animations & Professional Polish
+   ============================================================ */
+
+/* Enhanced glass-card hover — lift + border glow */
+.glass-card {
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.3s cubic-bezier(0.22,1,0.36,1),
+              border-color 0.3s ease !important;
+  z-index: 1;
+  position: relative;
+}
+.glass-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 50px rgba(70, 95, 255, 0.12), 0 8px 24px rgba(0,0,0,0.08) !important;
+  border-color: rgba(70, 95, 255, 0.22) !important;
+  z-index: 10;
+}
+
+/* Btn-primary — subtle ring pulse on hover */
+.btn-primary {
+  position: relative;
+  overflow: visible;
+}
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--accent-primary);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  border-radius: var(--radius-pill);
+}
+.btn-primary:hover::after {
+  opacity: 0.35;
+  transform: scale(1.05);
+}
+
+/* Section-header — animated accent underline */
+.section-header h2 {
+  position: relative;
+  display: inline-block;
+}
+.section-header h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.section-header:hover h2::after {
+  width: 80px;
+}
+
+/* Crane icon glow helper — add className="crane-icon-glow" */
+.crane-icon-glow {
+  filter: drop-shadow(0 0 8px currentColor);
+  transition: filter 0.3s ease;
+}
+.crane-icon-glow:hover {
+  filter: drop-shadow(0 0 16px currentColor);
+}
+
+/* Stagger helper classes for children */
+.stagger-children > *:nth-child(1) { transition-delay: 0ms !important; }
+.stagger-children > *:nth-child(2) { transition-delay: 80ms !important; }
+.stagger-children > *:nth-child(3) { transition-delay: 160ms !important; }
+.stagger-children > *:nth-child(4) { transition-delay: 240ms !important; }
+.stagger-children > *:nth-child(5) { transition-delay: 320ms !important; }
+.stagger-children > *:nth-child(6) { transition-delay: 400ms !important; }
+
+/* Industry badge pill */
+.industry-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brand-50);
+  color: var(--accent-primary);
+  border: 1px solid var(--brand-100);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
