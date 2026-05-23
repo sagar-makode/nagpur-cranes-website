@@ -22,7 +22,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
   if (!post) {
     return {
-      title: "Article Not Found - Nagpur Cranes Service",
+      title: "Article Not Found - NAGPUR CRANES",
     };
   }
 
@@ -116,7 +116,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
                 </div>
                 <div className={styles.authorInfo}>
                   <span className={styles.authorName}>{post.author}</span>
-                  <span className={styles.authorTitle}>Fleet Director, Nagpur Cranes</span>
+                  <span className={styles.authorTitle}>Fleet Director, NAGPUR CRANES</span>
                 </div>
               </div>
             </header>

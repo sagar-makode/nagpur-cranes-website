@@ -204,7 +204,7 @@ function ContactContent() {
 
               <div className={styles.successErpNotice}>
                 <Settings className={styles.successErpIcon} size={16} />
-                <span>Digitized and synced via Nagpur CraneManage™ ERP.</span>
+                <span>Digitized and synced via NAGPUR CRANES.</span>
               </div>
 
               <div className={styles.summaryList}>

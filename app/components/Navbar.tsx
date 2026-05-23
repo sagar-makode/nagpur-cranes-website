@@ -48,9 +48,8 @@ export default function Navbar() {
       <div className={styles.navContainer}>
         {/* Brand Logo */}
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoYellow}>Nagpur</span>
-          <span className={styles.logoWhite}>Cranes</span>
-          <span className={styles.serviceTag}>Service</span>
+          <span className={styles.logoYellow}>NAGPUR</span>
+          <span className={styles.logoWhite}>CRANES</span>
         </Link>
 
         {/* Desktop Links */}

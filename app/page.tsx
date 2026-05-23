@@ -50,7 +50,7 @@ export default function Home() {
           <div className={`${styles.heroContent} animate-fade-in`}>
             <div className={styles.heroBadge}>
               <span className={styles.heroBadgeDot} />
-              <span>Nagpur Cranes Service</span>
+              <span>NAGPUR CRANES</span>
             </div>
             <h1 className={styles.heroTitle}>
               Elite Heavy Lifting &<br /><span className={styles.gradientText}>Crane Rentals</span>
@@ -398,7 +398,7 @@ export default function Home() {
         <div className="container">
           <div className="section-header">
             <h2>Trusted By Top Infrastructure Firms</h2>
-            <p>Here is what construction and industrial leaders say about Nagpur Cranes.</p>
+            <p>Here is what construction and industrial leaders say about NAGPUR CRANES.</p>
           </div>
           <div className={`responsive-grid ${styles.testimonialsGrid}`}>
             {reviews.map((rev, idx) => (

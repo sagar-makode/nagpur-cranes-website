@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Farana crane rental",
     "crawler crane rental Maharashtra",
     "telescopic mobile crane rent",
-    "Nagpur Cranes Service",
+    "NAGPUR CRANES",
     "Mahesh Tathe",
   ],
   authors: [{ name: siteData.owner }],

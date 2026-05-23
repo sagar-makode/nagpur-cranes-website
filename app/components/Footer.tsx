@@ -12,8 +12,8 @@ export default function Footer() {
         {/* Company Pitch */}
         <div className={styles.footerColumn}>
           <div className={styles.brand}>
-            <span className={styles.logoYellow}>Nagpur</span>
-            <span className={styles.logoWhite}>Cranes</span>
+            <span className={styles.logoYellow}>NAGPUR</span>
+            <span className={styles.logoWhite}>CRANES</span>
           </div>
           <p className={styles.pitchText}>
             Central India's leading crane rental service provider. Offering high-capacity Crawler, Farana, and Mobile Telescopic cranes from 15 to 400 tons. Engineered for safety and maximum efficiency.

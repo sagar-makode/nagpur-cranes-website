@@ -28,7 +28,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   }
 
   return {
-    title: `${crane.title} Rentals - Nagpur Cranes Service`,
+    title: `${crane.title} Rentals - ${siteData.companyName}`,
     description: `Rent high-quality ${crane.title} with capacities of ${crane.capacity}. Competitively priced, certified, and fully insured across Central India.`,
     keywords: [`rent ${crane.slug}`, `${crane.slug} Nagpur`, `${crane.slug} Maharashtra`, `${crane.title} specs`],
   };
