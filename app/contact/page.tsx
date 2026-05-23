@@ -20,6 +20,7 @@ function ContactContent() {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   // Pre-fill crane type from query parameter if present
@@ -36,7 +37,7 @@ function ContactContent() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
 
@@ -46,8 +47,29 @@ function ContactContent() {
       return;
     }
 
-    // Success response simulation
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) {
+        throw new Error(result?.message || "Failed to send inquiry. Please try again.");
+      }
+
+      setIsSubmitted(true);
+    } catch (error) {
+      setErrorMsg(error instanceof Error ? error.message : "Failed to send inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -189,8 +211,8 @@ function ContactContent() {
                 />
               </div>
 
-              <button type="submit" className="btn-primary" style={{ width: "100%", marginTop: "10px" }}>
-                <span>Submit Quotation Request</span>
+              <button type="submit" className="btn-primary" style={{ width: "100%", marginTop: "10px" }} disabled={isSubmitting}>
+                <span>{isSubmitting ? "Sending Request..." : "Submit Quotation Request"}</span>
                 <ArrowRight size={18} />
               </button>
             </form>
