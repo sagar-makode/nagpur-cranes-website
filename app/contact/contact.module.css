@@ -277,17 +277,103 @@
 }
 
 @media (max-width: 968px) {
-  .grid {
+  .main {
+    padding-top: 120px;
+    padding-bottom: 60px;
+  }
+
+  .topSection {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 28px;
   }
-  
-  .infoCol {
-    position: relative;
-    top: 0;
+
+  .heroCard {
+    padding: 24px 20px;
   }
-  
+
+  .contactCards {
+    gap: 16px;
+  }
+
+  .contactCard,
+  .trustBadge {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .contactCard {
+    padding: 18px;
+  }
+
+  .trustBadge {
+    padding: 18px;
+  }
+
   .form {
-    padding: 30px 20px;
+    padding: 26px 18px;
+  }
+
+  .formSection {
+    margin-top: 24px;
+  }
+
+  .formTitle {
+    font-size: 1.65rem;
+  }
+
+  .heroCard {
+    margin: 0;
+  }
+
+  .mapSection {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding-top: 100px;
+    padding-bottom: 40px;
+  }
+
+  .title {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+
+  .heroCard {
+    padding: 20px 16px;
+  }
+
+  .contactCard,
+  .trustBadge {
+    gap: 10px;
+  }
+
+  .contactDetails a {
+    word-break: break-word;
+  }
+
+  .form {
+    padding: 22px 16px;
+  }
+
+  .formTitle {
+    font-size: 1.45rem;
+  }
+
+  .formSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .summaryRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
   }
 }

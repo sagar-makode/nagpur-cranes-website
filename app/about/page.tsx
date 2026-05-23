@@ -48,44 +48,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className={styles.contactSection}>
-          <div className={styles.contactBlockWrap}>
-            <div className={styles.contactCard}>
-              <div className={styles.contactTitle}>
-                <User size={22} />
-                <div>
-                  <h3>Contact Us</h3>
-                  <p>{siteData.owner}</p>
-                </div>
-              </div>
-              <div className={styles.contactList}>
-                <div className={styles.contactItem}>
-                  <Phone size={18} />
-                  <div>
-                    <span>Call</span>
-                    <Link href={`tel:${siteData.phone.replace(/\s+/g, "")}`}>{siteData.phone}</Link>
-                  </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <Mail size={18} />
-                  <div>
-                    <span>Mail</span>
-                    <Link href={`mailto:${siteData.email}`}>{siteData.email}</Link>
-                  </div>
-                </div>
-                <div className={styles.contactItem}>
-                  <MapPin size={18} />
-                  <div>
-                    <span>Location</span>
-                    <Link href={siteData.addressUrl} target="_blank" rel="noreferrer">
-                      {siteData.address}
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
     </main>
   );

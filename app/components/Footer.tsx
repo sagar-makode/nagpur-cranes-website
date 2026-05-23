@@ -125,7 +125,7 @@ export default function Footer() {
       <div className={styles.bottomBar}>
         <div className={styles.bottomContainer}>
           <p className={styles.copyright}>
-            © {currentYear} {siteData.companyName}. All rights reserved. Designed for elite SEO and mobile-first responsiveness.
+            © {currentYear} {siteData.companyName}. All rights reserved.
           </p>
           <div className={styles.bottomLinks}>
             <Link href="/sitemap.xml">Sitemap</Link>

@@ -73,13 +73,6 @@ export default function Home() {
         
 
 
-        {/* Animated scroll indicator */}
-        <div className={styles.scrollIndicator}>
-          <div className={styles.scrollMouse}>
-            <div className={styles.scrollWheel} />
-          </div>
-          <span>Scroll</span>
-        </div>
       </section>
 
       {/* Upgraded stats section with CountUp + crane icons */}
@@ -142,7 +135,7 @@ export default function Home() {
             <p>Select the ideal model optimized for your specific engineering, lifting, or industrial transport needs.</p>
           </div>
           <div className={`responsive-grid ${styles.cranesGrid}`}>
-            {cranes.map((crane: any) => (
+            {cranes.map((crane: any, index: number) => (
               <div key={crane.slug} className="glass-card">
                 <div className={styles.craneCardImageContainer}>
                   <Image
@@ -150,6 +143,9 @@ export default function Home() {
                     alt={crane.title}
                     width={400}
                     height={280}
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={index < 2}
                     className={styles.craneCardImage}
                   />
                   <div className={styles.craneCapacityBadge}>{crane.capacity}</div>
