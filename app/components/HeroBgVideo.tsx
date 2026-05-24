@@ -8,33 +8,42 @@ import { siteData } from "../lib/siteData";
 export default function HeroBgVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [videoState, setVideoState] = useState<"loading" | "playing" | "fallback">("loading");
+  const retryRef = useRef<NodeJS.Timeout | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // 1. First line of defense: check navigator.connection API (Android/Chrome)
-    if (typeof window !== "undefined" && navigator) {
-      const conn = (navigator as any).connection || (navigator as any).mozConnection || (navigator as any).webkitConnection;
-      if (conn) {
-        // If data saver is enabled or effective speed is slow (3G, 2G, slow-2g)
-        if (conn.saveData || ["slow-2g", "2g", "3g"].includes(conn.effectiveType)) {
-          console.log("Slow connection or Data Saver detected. Displaying lightweight WebP banner.");
-          setVideoState("fallback");
-          return;
-        }
-      }
-    }
-
-    // 2. Safety timeout of 10.0s starting from the moment video mounts.
-    // Gives the video ample time to buffer in parallel and play, preventing premature fallback.
-    timeoutRef.current = setTimeout(() => {
-      console.log("Video playback stalled or failed to start within 10s. Falling back to WebP banner.");
-      setVideoState("fallback");
-    }, 10000);
-
     const video = videoRef.current;
     if (!video) return;
 
-    // Enforce 0.5x speed on mount
+    let cancelled = false;
+    const scheduleRetry = () => {
+      if (cancelled || retryRef.current) return;
+      retryRef.current = setTimeout(() => {
+        retryRef.current = null;
+        startPlayback();
+      }, 1200);
+    };
+
+    const startPlayback = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+      video.playbackRate = 0.5;
+
+      const playAttempt = video.play();
+      if (playAttempt) {
+        playAttempt.catch(() => {
+          scheduleRetry();
+        });
+      }
+    };
+
+    // Keep the still image visible, but never permanently remove the video.
+    // Cold first visits can need longer buffering than refreshes because the MP4 is not cached yet.
+    timeoutRef.current = setTimeout(() => {
+      startPlayback();
+    }, 300);
+
     video.playbackRate = 0.5;
 
     // Re-apply playback rate if the browser resets it on loop
@@ -44,43 +53,49 @@ export default function HeroBgVideo() {
       }
     };
 
-    // Safe fallback interaction listener to boot playback if browser policies block native autoplay
     const handleInteraction = () => {
       if (video && video.paused) {
-        video.play()
-          .then(() => {
-            console.log("Interactive backup playback booted successfully.");
-          })
-          .catch((err) => {
-            console.log("Interactive play backup was blocked:", err);
-          });
+        startPlayback();
       }
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
 
     video.addEventListener("ratechange", handleRateChange);
+    video.addEventListener("loadeddata", startPlayback);
+    video.addEventListener("canplay", startPlayback);
     window.addEventListener("click", handleInteraction);
     window.addEventListener("touchstart", handleInteraction);
+    startPlayback();
 
     return () => {
+      cancelled = true;
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
         timeoutRef.current = null;
       }
+      if (retryRef.current) {
+        clearTimeout(retryRef.current);
+        retryRef.current = null;
+      }
       video.removeEventListener("ratechange", handleRateChange);
+      video.removeEventListener("loadeddata", startPlayback);
+      video.removeEventListener("canplay", startPlayback);
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
   }, []);
 
   const handlePlaying = () => {
-    console.log("Hero background video playing. Transitioning visual layer.");
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-    setVideoState("playing");
+    if (retryRef.current) {
+      clearTimeout(retryRef.current);
+      retryRef.current = null;
+    }
+    setIsPlaying(true);
   };
 
   // Unified render tree to prevent React from unmounting and recreating the Image DOM node.
@@ -95,7 +110,7 @@ export default function HeroBgVideo() {
         priority
         style={{
           objectFit: "cover",
-          opacity: videoState === "playing" ? 0 : 1,
+          opacity: isPlaying ? 0 : 1,
           transition: "opacity 1.2s ease-in-out",
           pointerEvents: "none",
           zIndex: 1
@@ -103,35 +118,36 @@ export default function HeroBgVideo() {
       />
 
       {/* Video absolute-positioned over image, starts invisible (opacity 0) and fades in smoothly once playing */}
-      {videoState !== "fallback" && (
-        <video
-          ref={videoRef}
-          src="/assets/hero-working.mp4"
-          poster="/assets/about-operations.webp"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onPlaying={handlePlaying}
-          onLoadedMetadata={(e) => {
-            e.currentTarget.playbackRate = 0.5;
-          }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            opacity: videoState === "playing" ? 1 : 0,
-            transition: "opacity 1.2s ease-in-out",
-            pointerEvents: "none",
-            zIndex: 2
-          }}
-          title={`${siteData.companyName} - Heavy Equipment in Action`}
-        />
-      )}
+      <video
+        ref={videoRef}
+        src="/assets/hero-working.mp4"
+        poster="/assets/about-operations.webp"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        onPlaying={handlePlaying}
+        onPlay={handlePlaying}
+        onLoadedMetadata={(e) => {
+          e.currentTarget.muted = true;
+          e.currentTarget.defaultMuted = true;
+          e.currentTarget.playbackRate = 0.5;
+        }}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: isPlaying ? 1 : 0,
+          transition: "opacity 1.2s ease-in-out",
+          pointerEvents: "none",
+          zIndex: 2
+        }}
+        title={`${siteData.companyName} - Heavy Equipment in Action`}
+      />
     </div>
   );
 }
