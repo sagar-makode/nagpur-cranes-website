@@ -25,10 +25,10 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/", icon: Home },
-    { name: "About", href: "/aboutus", icon: User },
+    { name: "About", href: "/about", icon: User },
     { name: "Cranes", href: "/cranes", icon: Briefcase },
     { name: "Blog", href: "/blog", icon: PenTool },
-    { name: "Contact", href: "/contactus", icon: PhoneCall },
+    { name: "Contact", href: "/contact", icon: PhoneCall },
   ];
 
   const getIsActive = (linkHref: string) => {

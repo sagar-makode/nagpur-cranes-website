@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CheckCircle, HelpCircle, Phone, FileText } from "lucide-react";
 import { getCranesData } from "../../lib/data";
-import { siteData } from "../../lib/siteData";
+import { siteData, defaultSEO } from "../../lib/siteData";
 import styles from "./cranes.module.css";
 
 // Generate static params for 100% Static Site Generation
@@ -23,14 +23,45 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
   if (!crane) {
     return {
-      title: `Crane Not Found - ${siteData.companyName}`,
+      title: `Crane Not Found | ${siteData.companyName}`,
     };
   }
 
+  const titleLower = crane.title.toLowerCase();
+  const baseDescription = `Premium ${crane.title} rental services in India. Nagpur Cranes offers safety-certified ${crane.title} fleets with capacities up to ${crane.capacity}. Contact us for competitive rates.`;
+
   return {
-    title: `${crane.title} Rentals - ${siteData.companyName}`,
-    description: `Rent high-quality ${crane.title} with capacities of ${crane.capacity}. Competitively priced, certified, and fully insured across Central India.`,
-    keywords: [`rent ${crane.slug}`, `${crane.slug} Nagpur`, `${crane.slug} Maharashtra`, `${crane.title} specs`],
+    title: `${crane.title} Rentals | Nagpur Cranes - ${crane.capacity}`,
+    description: baseDescription,
+    keywords: [
+      ...defaultSEO.keywords,
+      `rent ${titleLower}`,
+      `rent ${crane.slug}`,
+      `${titleLower} in nagpur`,
+      `${titleLower} service in maharashtra`,
+      `${titleLower} in india`,
+      `hire ${crane.slug}`,
+      `${crane.title} specs and load chart`,
+    ],
+    openGraph: {
+      title: `${crane.title} Rentals | Nagpur Cranes`,
+      description: baseDescription,
+      url: `${siteData.domain}/cranes/${crane.slug}`,
+      images: [
+        {
+          url: crane.image,
+          width: 1200,
+          height: 630,
+          alt: `${crane.title} Specs - Nagpur Cranes`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${crane.title} Rentals | Nagpur Cranes`,
+      description: baseDescription,
+      images: [crane.image],
+    },
   };
 }
 
@@ -97,7 +128,7 @@ export default async function CranePage(props: { params: Promise<{ slug: string 
             {/* Quote Action Card */}
             <div className={styles.actionCard}>
               <h4>Get an Instant Estimate for this Crane</h4>
-              <p>Let Mahesh Tathe structure the perfect rental deal for your site location and project duration.</p>
+              <p>Let Nagpur Cranes structure the perfect rental deal for your site location and project duration.</p>
               <div className={styles.actionRow}>
                 <Link href={`${siteData.quoteUrl}&crane=${crane.slug}`} className="btn-primary" style={{ flex: 1, justifyContent: "center" }}>
                   <FileText size={18} />

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, User, Calendar, Clock, Bookmark, ArrowRight, ShieldAlert, Award } from "lucide-react";
 import { getBlogPosts } from "../../lib/data";
-import { siteData } from "../../lib/siteData";
+import { siteData, defaultSEO } from "../../lib/siteData";
 import styles from "./post.module.css";
 
 // Generate static params for 100% Static Site Generation
@@ -22,14 +22,40 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 
   if (!post) {
     return {
-      title: "Article Not Found - NAGPUR CRANES",
+      title: `Article Not Found | ${siteData.companyName}`,
     };
   }
 
+  const baseDescription = post.excerpt;
+
   return {
     title: `${post.title} | ${siteData.companyName} Blog`,
-    description: post.excerpt,
-    keywords: post.keywords,
+    description: baseDescription,
+    keywords: [
+      ...defaultSEO.keywords,
+      ...post.keywords,
+      `${post.category.toLowerCase()} guidelines`,
+      `crane operator advice`,
+    ],
+    openGraph: {
+      title: `${post.title} | Nagpur Cranes Blog`,
+      description: baseDescription,
+      url: `${siteData.domain}/blog/${post.slug}`,
+      images: [
+        {
+          url: `${siteData.domain}/assets/about-operations.webp`,
+          width: 1200,
+          height: 630,
+          alt: `${post.title} - Nagpur Cranes Blog`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Nagpur Cranes Blog`,
+      description: baseDescription,
+      images: [`${siteData.domain}/assets/about-operations.webp`],
+    },
   };
 }
 
@@ -51,24 +77,24 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
     "@type": "BlogPosting",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://nagpurcranes.com/blog/${post.slug}`
+      "@id": `${siteData.domain}/blog/${post.slug}`
     },
     "headline": post.title,
     "description": post.excerpt,
-    "image": "https://nagpurcranes.com/assets/about-operations.png",
+    "image": `${siteData.domain}/assets/about-operations.webp`,
     "datePublished": "2026-05-10T12:00:00+05:30", // Fallback or dynamic
     "dateModified": "2026-05-23T12:00:00+05:30",
     "author": {
       "@type": "Person",
       "name": post.author,
-      "url": "https://nagpurcranes.com"
+      "url": siteData.domain
     },
     "publisher": {
       "@type": "Organization",
       "name": siteData.companyName,
       "logo": {
         "@type": "ImageObject",
-        "url": "https://nagpurcranes.com/assets/logo.svg"
+        "url": `${siteData.domain}/assets/logo.svg`
       }
     }
   };
@@ -147,7 +173,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
               <div className={styles.widgetContent}>
                 <Award className={styles.widgetIcon} size={24} />
                 <h3>Need Heavy Rigging Advice?</h3>
-                <p>Mahesh Tathe provides free onsite consultations for construction, flyovers, and industrial plants across Central India.</p>
+                <p>Nagpur Cranes provides free onsite consultations for construction, flyovers, and industrial plants across Central India.</p>
                 <Link href="/contact" className="btn-primary" style={{ width: "100%", justifyContent: "center" }}>
                   <span>Book Free Consultation</span>
                 </Link>

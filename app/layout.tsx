@@ -5,7 +5,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingActions from "./components/FloatingActions";
-import { siteData } from "./lib/siteData";
+import { siteData, defaultSEO } from "./lib/siteData";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -26,57 +26,63 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://nagpurcranes.com"),
-  title: `${siteData.companyName} - Premium Crane Rental Central India`,
-  description: `${siteData.companyName} rents high-quality Crawler, Farana, and Mobile Telescopic cranes from 15 to 400 tons in Nagpur, Maharashtra, MP, Chhattisgarh, and Odisha. Certified safety first.`,
-  keywords: [
-    "crane rental Nagpur",
-    "heavy lifting service Nagpur",
-    "Farana crane rental",
-    "crawler crane rental Maharashtra",
-    "telescopic mobile crane rent",
-    "NAGPUR CRANES",
-    "Mahesh Tathe",
-  ],
-  authors: [{ name: siteData.owner }],
+  metadataBase: new URL(siteData.domain),
+  title: {
+    default: defaultSEO.title,
+    template: `%s | ${siteData.companyName}`,
+  },
+  description: defaultSEO.description,
+  keywords: defaultSEO.keywords,
+  authors: [{ name: "Nagpur Cranes" }],
   robots: "index, follow",
   alternates: {
-    canonical: "https://nagpurcranes.com", // Adjust to their domain if different
+    canonical: siteData.domain, // Adjust to their domain if different
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nagpurcranes.com",
-    title: `${siteData.companyName} - Premium Crane Rental`,
-    description: "Get the best price on Crawler, Farana, and Mobile Telescopic crane rentals. 15 to 400 Ton fleets available in Maharashtra, Chhattisgarh, Odisha.",
+    url: siteData.domain,
+    title: "Nagpur Cranes | Premium Crane Rental & Lifting Services",
+    description: defaultSEO.description,
     siteName: siteData.companyName,
     images: [
       {
-        url: "/assets/about-operations.png",
+        url: defaultSEO.ogImage,
         width: 1200,
         height: 630,
         alt: `${siteData.companyName} Fleet Showcase`,
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nagpur Cranes | Premium Crane Rental & Heavy Lifting India",
+    description: defaultSEO.description,
+    images: [defaultSEO.ogImage],
+  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // Inject schema structured data for LocalBusiness & Services
-  const schemaData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "@id": "https://nagpurcranes.com/#organization",
-        "name": siteData.companyName,
-        "url": "https://nagpurcranes.com",
-        "logo": "https://nagpurcranes.com/assets/logo.svg",
-        "image": "https://nagpurcranes.com/assets/about-operations.png",
+  export default function RootLayout({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    // Inject schema structured data for LocalBusiness & Services
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": `${siteData.domain}/#organization`,
+          "name": siteData.companyName,
+          "url": siteData.domain,
+          "logo": `${siteData.domain}/assets/logo.svg`,
+          "image": `${siteData.domain}/assets/about-operations.webp`,
         "description": "Leading provider of crane rentals and heavy lifting services in Nagpur, Maharashtra, and across Central India.",
         "telephone": siteData.phone,
         "email": siteData.email,
@@ -104,7 +110,7 @@ export default function RootLayout({
         "@type": "Service",
         "serviceType": "Crane Rental Service",
         "provider": {
-          "@id": "https://nagpurcranes.com/#organization"
+          "@id": `${siteData.domain}/#organization`
         },
         "areaServed": ["Maharashtra", "Madhya Pradesh", "Chhattisgarh", "Odisha"],
         "hasOfferCatalog": {

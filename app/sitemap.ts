@@ -1,13 +1,16 @@
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
+import { siteData } from "./lib/siteData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://nagpurcranes.com";
+  const baseUrl = siteData.domain;
 
   // Base routes
   const routes = [
     "",
+    "/about",
+    "/cranes",
     "/blog",
     "/contact",
   ].map((route) => ({

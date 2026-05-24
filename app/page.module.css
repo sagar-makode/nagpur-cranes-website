@@ -888,7 +888,7 @@
 
 .ctaCard {
   position: relative;
-  background-image: linear-gradient(135deg, rgba(70, 95, 255, 0.92) 0%, rgba(54, 65, 245, 0.95) 100%), url('/assets/cta-background.png');
+  background-image: linear-gradient(135deg, rgba(70, 95, 255, 0.92) 0%, rgba(54, 65, 245, 0.95) 100%), url('/assets/cta-background.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

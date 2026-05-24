@@ -32,7 +32,7 @@ export default function HeroBgVideo() {
     <video
       ref={videoRef}
       src="/assets/hero-working.mp4"
-      poster="/assets/mainImg.png"
+      poster="/assets/about-operations.webp"
       autoPlay
       loop
       muted

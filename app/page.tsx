@@ -14,8 +14,35 @@ import {
   WindTurbineIcon,
 } from "./components/CraneIcons";
 import { getCranesData, getBlogPosts } from "./lib/data";
-import { siteData } from "./lib/siteData";
+import { siteData, defaultSEO } from "./lib/siteData";
+import type { Metadata } from "next";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: defaultSEO.title,
+  description: defaultSEO.description,
+  keywords: defaultSEO.keywords,
+  openGraph: {
+    type: "website",
+    url: siteData.domain,
+    title: defaultSEO.title,
+    description: defaultSEO.description,
+    images: [
+      {
+        url: defaultSEO.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "Nagpur Cranes | Premium Crane Service in India",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: defaultSEO.title,
+    description: defaultSEO.description,
+    images: [defaultSEO.ogImage],
+  },
+};
 
 export default function Home() {
   const cranes = getCranesData();
@@ -24,13 +51,13 @@ export default function Home() {
   // Testimonials
   const reviews = [
     {
-      name: "Rajesh Singhania",
+      name: "R. S. (Infrastructure Director)",
       company: "Singhania Infra Projects",
       rating: 5,
       comment: "Rented their 300-ton Crawler crane for a highway bridge project. The equipment was in flawless condition and the operator was highly professional. Completed ahead of time!",
     },
     {
-      name: "Amit Deshmukh",
+      name: "A. D. (Logistics Operations Head)",
       company: "Central Logistics India",
       rating: 5,
       comment: "We regularly hire their Farana cranes for factory maintenance. Pick & carry articulation is perfect for tight assembly environments. Best service and competitive prices in Nagpur.",
@@ -181,7 +208,7 @@ export default function Home() {
             <ScrollReveal delay={0}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/sector-construction.png"
+                  src="/assets/sector-construction.webp"
                   alt="Infrastructure & Construction Lifting"
                   fill
                   className={styles.sectorCardBg}
@@ -199,7 +226,7 @@ export default function Home() {
             <ScrollReveal delay={80}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/sector-wind.png"
+                  src="/assets/sector-wind.webp"
                   alt="Wind & Renewable Energy Lifting"
                   fill
                   className={styles.sectorCardBg}
@@ -217,7 +244,7 @@ export default function Home() {
             <ScrollReveal delay={160}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/sector-refinery.png"
+                  src="/assets/sector-refinery.webp"
                   alt="Oil, Gas & Refineries Industrial Lifting"
                   fill
                   className={styles.sectorCardBg}
@@ -235,7 +262,7 @@ export default function Home() {
             <ScrollReveal delay={240}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/about-operations.png"
+                  src="/assets/about-operations.webp"
                   alt="Shipping, Marine & Ports Lifting"
                   fill
                   className={styles.sectorCardBg}
@@ -253,7 +280,7 @@ export default function Home() {
             <ScrollReveal delay={320}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/cta-background.png"
+                  src="/assets/cta-background.webp"
                   alt="Metals, Cement & Mining Operations"
                   fill
                   className={styles.sectorCardBg}
@@ -271,7 +298,7 @@ export default function Home() {
             <ScrollReveal delay={400}>
               <div className={`${styles.sectorCard} ${styles.hasBgImage}`}>
                 <Image
-                  src="/assets/team-operator.png"
+                  src="/assets/team-operator.webp"
                   alt="Power Plant Turnarounds Lifting"
                   fill
                   className={styles.sectorCardBg}
@@ -425,7 +452,7 @@ export default function Home() {
           <div className={styles.ctaCard}>
             <div className={styles.ctaContent}>
               <h2>Ready to Power Up Your Site Operations?</h2>
-              <p>Contact Mahesh Tathe for customized lift designs, machinery consultations, and instant pricing quotes.</p>
+              <p>Contact Nagpur Cranes for customized lift designs, machinery consultations, and instant pricing quotes.</p>
               <div className={styles.ctaActions}>
                 <Link href={siteData.quoteUrl} className="btn-primary" style={{ background: "#ffffff", color: "var(--brand-600)" }}>
                   <span>Request Rental Quotation</span>
