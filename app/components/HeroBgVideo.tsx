@@ -9,7 +9,7 @@ export default function HeroBgVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const retryRef = useRef<NodeJS.Timeout | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -53,19 +53,42 @@ export default function HeroBgVideo() {
       }
     };
 
+    const handleReady = () => {
+      setIsVideoReady(true);
+      startPlayback();
+    };
+
     const handleInteraction = () => {
       if (video && video.paused) {
         startPlayback();
       }
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("pointerdown", handleInteraction);
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden && video.paused) {
+        startPlayback();
+      }
+    };
+
+    const handleWindowFocus = () => {
+      if (video.paused) {
+        startPlayback();
+      }
     };
 
     video.addEventListener("ratechange", handleRateChange);
-    video.addEventListener("loadeddata", startPlayback);
-    video.addEventListener("canplay", startPlayback);
+    video.addEventListener("loadeddata", handleReady);
+    video.addEventListener("canplay", handleReady);
+    video.addEventListener("playing", handleReady);
     window.addEventListener("click", handleInteraction);
     window.addEventListener("touchstart", handleInteraction);
+    window.addEventListener("pointerdown", handleInteraction);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleWindowFocus);
+    video.load();
     startPlayback();
 
     return () => {
@@ -79,10 +102,14 @@ export default function HeroBgVideo() {
         retryRef.current = null;
       }
       video.removeEventListener("ratechange", handleRateChange);
-      video.removeEventListener("loadeddata", startPlayback);
-      video.removeEventListener("canplay", startPlayback);
+      video.removeEventListener("loadeddata", handleReady);
+      video.removeEventListener("canplay", handleReady);
+      video.removeEventListener("playing", handleReady);
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("pointerdown", handleInteraction);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleWindowFocus);
     };
   }, []);
 
@@ -95,7 +122,7 @@ export default function HeroBgVideo() {
       clearTimeout(retryRef.current);
       retryRef.current = null;
     }
-    setIsPlaying(true);
+    setIsVideoReady(true);
   };
 
   // Unified render tree to prevent React from unmounting and recreating the Image DOM node.
@@ -110,17 +137,16 @@ export default function HeroBgVideo() {
         priority
         style={{
           objectFit: "cover",
-          opacity: isPlaying ? 0 : 1,
+          opacity: isVideoReady ? 0 : 1,
           transition: "opacity 1.2s ease-in-out",
           pointerEvents: "none",
-          zIndex: 1
+          zIndex: 2
         }}
       />
 
       {/* Video absolute-positioned over image, starts invisible (opacity 0) and fades in smoothly once playing */}
       <video
         ref={videoRef}
-        src="/assets/hero-working.mp4"
         poster="/assets/about-operations.webp"
         autoPlay
         loop
@@ -141,13 +167,14 @@ export default function HeroBgVideo() {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          opacity: isPlaying ? 1 : 0,
-          transition: "opacity 1.2s ease-in-out",
+          opacity: 1,
           pointerEvents: "none",
-          zIndex: 2
+          zIndex: 1
         }}
         title={`${siteData.companyName} - Heavy Equipment in Action`}
-      />
+      >
+        <source src="/assets/hero-working.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 }
