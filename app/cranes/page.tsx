@@ -3,17 +3,23 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { getCranesData } from "../lib/data";
+import { defaultSEO } from "../lib/siteData";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Industrial Cranes for Rent | Nagpur Cranes - 15T to 400T Capacity",
   description: "Browse our premium heavy lifting crane rental fleet in Nagpur. We rent Farana pick-and-carry, hydraulic mobile telescopic, and tracked lattice boom crawler cranes.",
   keywords: [
+    ...defaultSEO.keywords,
     "crane fleet Nagpur",
     "rent crawler crane Maharashtra",
     "Farana crane hire Nagpur",
     "mobile telescopic crane rent Central India",
     "heavy machinery rental Nagpur",
+    "400 ton crane rental India",
+    "hydra crane hire Nagpur",
+    "pick and carry crane Maharashtra",
+    "lattice boom crane rental India",
   ],
 };
 

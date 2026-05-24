@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail, Phone, MapPin, User, Compass } from "lucide-react";
-import { aboutData, siteData } from "../lib/siteData";
+import { aboutData, siteData, defaultSEO } from "../lib/siteData";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "About Us | Nagpur Cranes - Over 15 Years of Heavy Lifting Expertise",
   description: "Learn about Nagpur Cranes, Central India's leading lifting partner. Rent high-capacity crawler, telescopic mobile, and pick & carry farana cranes in Maharashtra, MP, Chhattisgarh, and Odisha.",
   keywords: [
+    ...defaultSEO.keywords,
     "about Nagpur Cranes",
     "crane services Maharashtra",
     "heavy lifting company Nagpur",
     "safety certified crane rent India",
     "crane operators Nagpur",
+    "crane company Nagpur",
+    "crane rental company Central India",
+    "experienced crane operators Maharashtra",
   ],
 };
 

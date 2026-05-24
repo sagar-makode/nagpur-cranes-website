@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     "rigging calculations",
     "crawler crane maintenance",
     "Farana crane guidelines",
+    "crane industry news India",
+    "heavy equipment tips Maharashtra",
+    "safe crane operation guide",
   ],
 };
 
