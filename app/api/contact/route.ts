@@ -7,6 +7,7 @@ type ContactPayload = {
   phone?: unknown;
   email?: unknown;
   siteDetails?: unknown;
+  ton?: unknown;
 };
 
 const brevoEndpoint = "https://api.brevo.com/v3/smtp/email";
@@ -46,10 +47,11 @@ export async function POST(request: Request) {
   const phone = getString(payload.phone, 60);
   const email = getString(payload.email, 160);
   const siteDetails = getString(payload.siteDetails, 2000);
+  const ton = getString(payload.ton, 120);
 
-  if (!location || !name || !phone) {
+  if (!location || !name || !phone || !ton) {
     return NextResponse.json(
-      { message: "Name, phone number, and project location are required." },
+      { message: "Name, phone number, project location, and required tonnage are required." },
       { status: 400 },
     );
   }
@@ -83,6 +85,7 @@ export async function POST(request: Request) {
           ${buildDetailRow("Phone Number", phone)}
           ${buildDetailRow("Email Address", email)}
           ${buildDetailRow("Project Location", location)}
+          ${buildDetailRow("Required Tonnage", ton)}
           ${buildDetailRow("Site Details", siteDetails)}
         </table>
         <div style="padding:18px 26px;color:#64748b;font-size:13px;line-height:1.5;">
@@ -98,7 +101,8 @@ export async function POST(request: Request) {
     `Phone Number: ${phone}`,
     `Email Address: ${email || "Not provided"}`,
     `Project Location: ${location}`,
-    `Site Details: ${siteDetails || "Not provided"}`,
+      `Required Tonnage: ${ton || "Not provided"}`,
+      `Site Details: ${siteDetails || "Not provided"}`,
   ].join("\n");
 
   const brevoPayload: Record<string, unknown> = {

@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import { Phone, ChevronUp } from "lucide-react";
+import { Phone } from "lucide-react";
 import { siteData } from "../lib/siteData";
 import styles from "./FloatingActions.module.css";
 
@@ -11,8 +11,8 @@ function WhatsAppIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      width="40"
-      height="40"
+      width="35"
+      height="35"
       aria-hidden="true"
       fill="none"
     >
@@ -29,35 +29,8 @@ function WhatsAppIcon() {
 }
 
 export default function FloatingActions() {
-  const [showScroll, setShowScroll] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScroll(true);
-      } else {
-        setShowScroll(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <div className={styles.wrapper}>
-      {/* Scroll to Top */}
-      <button
-        onClick={scrollToTop}
-        className={`${styles.actionButton} ${styles.scrollTop} ${showScroll ? styles.visible : ""}`}
-        aria-label="Scroll to top"
-      >
-        <ChevronUp size={20} />
-      </button>
-
       {/* Direct Phone Call */}
       <Link
         href={`tel:${siteData.phone.replace(/\s+/g, "")}`}

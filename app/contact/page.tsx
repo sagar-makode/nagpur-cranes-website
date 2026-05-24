@@ -17,6 +17,7 @@ function ContactContent() {
     phone: "",
     email: "",
     siteDetails: "",
+    ton: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,8 +43,8 @@ function ContactContent() {
     setErrorMsg("");
 
     // Simple validation
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.location.trim()) {
-      setErrorMsg("Please fill in all required fields (Name, Phone Number, and Project Location).");
+    if (!formData.name.trim() || !formData.phone.trim() || !formData.location.trim() || !formData.ton.trim()) {
+      setErrorMsg("Please fill in all required fields (Name, Phone Number, Project Location, and Required Tonnage).");
       return;
     }
 
@@ -182,6 +183,19 @@ function ContactContent() {
                     required
                   />
                 </div>
+                <div className="input-group ton-group">
+                  <label htmlFor="ton">Required Tonnage *</label>
+                  <input
+                    type="text"
+                    id="ton"
+                    name="ton"
+                    value={formData.ton}
+                    onChange={handleChange}
+                    placeholder="e.g. 20 T, 15 T, 5-10 T"
+                    className="input-field"
+                    required
+                  />
+                </div>
               </div>
 
               <div className="input-group">
@@ -224,10 +238,6 @@ function ContactContent() {
                 Thank you {formData.name}. Your lift requirements for {formData.location} have been registered.
               </p>
 
-              <div className={styles.successErpNotice}>
-                <Settings className={styles.successErpIcon} size={16} />
-                <span>Digitized and synced via NAGPUR CRANES.</span>
-              </div>
 
               <div className={styles.summaryList}>
                 <div className={styles.summaryRow}>
@@ -238,6 +248,12 @@ function ContactContent() {
                 <div className={styles.summaryRow}>
                   <span>Site Notes:</span>
                   <strong>{formData.siteDetails}</strong>
+                </div>
+              )}
+              {formData.ton && (
+                <div className={styles.summaryRow}>
+                  <span>Required Tonnage:</span>
+                  <strong>{formData.ton}</strong>
                 </div>
               )}
             </div>

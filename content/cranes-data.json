@@ -4,7 +4,7 @@
     "title": "Farana Pick & Carry Cranes",
     "caption": "High-efficiency heavy lifting pick-and-carry farana cranes ranging from 15 to 30 tons.",
     "capacity": "15 to 30 Tons",
-    "image": "/assets/faranacrane.png",
+    "image": "/assets/farana-crane.png",
     "overview": "We specialize in providing high-quality Farana cranes with lifting capacities ranging from 15 to 30 tons. Our competitively priced cranes are ideal for a variety of pick-and-carry operations, offering exceptional performance, high maneuverability, and reliable service in Central India.",
     "benefits": [
       {"title": "Compact Design", "desc": "Perfectly suited for narrow workspaces and congested project sites."},
@@ -33,7 +33,7 @@
     "title": "Mobile & Telescopic Cranes",
     "caption": "Premium heavy-duty mobile and telescopic cranes ranging from 30 tons to 400 tons.",
     "capacity": "30 to 400 Tons",
-    "image": "/assets/mobileCrain.png",
+    "image": "/assets/mobile-telescopic-crane.png",
     "overview": "We offer top-of-the-line mobile and telescopic cranes with lifting capacities starting from 30 tons all the way up to 400 tons. Engineered for high-altitude heavy lifting and rapid street transit, our fleet represents the peak of reliability and precision engineering in Central India.",
     "benefits": [
       {"title": "High Reach Capability", "desc": "Telescopic booms extend to incredible heights with full stability."},
@@ -62,7 +62,7 @@
     "title": "Heavy Crawler Cranes",
     "caption": "Ultimate stability heavy-duty lattice boom crawler cranes from 100 to 400 tons.",
     "capacity": "100 to 400 Tons",
-    "image": "/assets/Crawler Cranes.png",
+    "image": "/assets/heavy-crawler-crane.png",
     "overview": "For the largest structural works and longest assembly tasks, we supply lattice boom crawler cranes spanning 100 to 400 tons. With tracked chassis, they offer unmatched ground stability and high lifting capacities in all terrains and soil types.",
     "benefits": [
       {"title": "Maximum Base Stability", "desc": "Tracked crawl pads distribute weight perfectly over soft or uneven soils."},
@@ -84,6 +84,64 @@
       {"label": "Max Lattice Length", "value": "Up to 96 Meters"},
       {"label": "Crawler Track Width", "value": "800 mm to 1200 mm"},
       {"label": "Operational Stability", "value": "Superior 360-degree continuous lifting"}
+    ]
+  },
+  {
+    "slug": "boom-lifter",
+    "title": "Telescopic Boom Lifters",
+    "caption": "High-performance self-propelled aerial work platforms and boom lifters from 60 to 185 feet.",
+    "capacity": "60 to 185 Feet",
+    "image": "/assets/boom-lifter.png",
+    "overview": "We provide premium self-propelled telescopic boom lifters with working heights ranging from 60 to 185 feet. Engineered for rough terrains and high-altitude operations, our boom lifters provide a safe, stable, and highly mobile platform for workers, tools, and materials on complex commercial and industrial sites across Central India.",
+    "benefits": [
+      {"title": "Extreme Reach", "desc": "Smooth telescopic boom extension allows access to heights up to 185 feet quickly."},
+      {"title": "All-Terrain Mobile", "desc": "Equipped with powerful 4WD systems and high ground clearance for rough construction sites."},
+      {"title": "Proportional Controls", "desc": "Millimeter-precise joystick controls for smooth elevation and rotational adjustments."},
+      {"title": "Advanced Safety Features", "desc": "Standard platform load indicators, automatic leveling, and integrated harness anchor points."},
+      {"title": "High Lift Capacity", "desc": "Heavy-duty platform supports multiple workers alongside heavy tools and equipment safely."}
+    ],
+    "applications": [
+      "Industrial Plant Maintenance & Pipeline Engineering",
+      "Steel Structure & Warehouse Shed Erection",
+      "Commercial Building Facades & Exterior Glazing",
+      "Aviation Hangar & Wind Turbine Maintenance",
+      "Mega Infrastructure Lighting & CCTV Installations"
+    ],
+    "specs": [
+      {"label": "Working Height", "value": "60 to 185 Feet"},
+      {"label": "Horizontal Reach", "value": "Up to 80 Feet"},
+      {"label": "Platform Capacity", "value": "Up to 340 kg"},
+      {"label": "Drive Configuration", "value": "4WD / Rough Terrain oscillating axles"},
+      {"label": "Power Source", "value": "High-efficiency Turbo Diesel / Hybrid"}
+    ]
+  },
+  {
+    "slug": "hydra-cranes",
+    "title": "Hydra Pick & Carry Cranes",
+    "caption": "Highly versatile and agile hydraulic pick-and-carry hydra cranes from 14 to 20 tons.",
+    "capacity": "14 to 20 Tons",
+    "image": "/assets/hydra-crane.png",
+    "overview": "Our Hydra pick-and-carry cranes range from 14 to 20 tons, offering the ultimate combination of speed, power, and maneuverability. Known for their fast travel speeds and quick setup times without needing outriggers, they are the go-to fleet option for daily loading, unloading, and yard operations in Nagpur.",
+    "benefits": [
+      {"title": "Articulated Steering", "desc": "Allows sharp turning angles for navigating very narrow and congested work zones."},
+      {"title": "Zero Setup Time", "desc": "Requires no heavy outriggers, enabling immediate heavy pick-and-carry actions on arrival."},
+      {"title": "Excellent Travel Speed", "desc": "High road mobility speeds up transit times between multiple local project yards."},
+      {"title": "Ergonomic Cabin Layout", "desc": "Provides complete 360-degree visibility for the operator to ensure safe yard movement."},
+      {"title": "Cost-Effective Rental", "desc": "Extremely economical daily rates perfect for short-term logistic shifts."}
+    ],
+    "applications": [
+      "Industrial Warehouse Material Loading & Yard Management",
+      "Steel Fabrication Yards & Local Machinery Moving",
+      "Civil Foundation Construction & Pipeline Laying",
+      "Factory Machinery Assembly & Daily Site Shifts",
+      "Rapid Road Accident Rescue & Commercial Cargo Transits"
+    ],
+    "specs": [
+      {"label": "Lifting Capacity", "value": "14 to 20 Tons"},
+      {"label": "Max Travel Speed", "value": "40 km/h"},
+      {"label": "Boom Extension", "value": "Telescopic boom up to 18 Meters"},
+      {"label": "Steering Control", "value": "Articulated Hydraulic Power Steering"},
+      {"label": "Transmission", "value": "Heavy-duty synchromesh gear configuration"}
     ]
   }
 ]

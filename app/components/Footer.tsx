@@ -50,8 +50,13 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/contact" className={styles.footerLink}>
-                Custom Rigging & Lift Plans
+              <Link href="/cranes/boom-lifter" className={styles.footerLink}>
+                Telescopic Boom Lifters (60-185 Ft)
+              </Link>
+            </li>
+            <li>
+              <Link href="/cranes/hydra-cranes" className={styles.footerLink}>
+                Hydra Articulated Cranes (14-20T)
               </Link>
             </li>
           </ul>
