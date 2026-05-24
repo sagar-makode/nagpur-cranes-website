@@ -7,6 +7,7 @@ import { siteData } from "../lib/siteData";
 
 export default function HeroBgVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [videoState, setVideoState] = useState<"loading" | "playing" | "fallback">("loading");
 
@@ -47,7 +48,7 @@ export default function HeroBgVideo() {
 
     // Second line of defense: Safety timeout of 3.5s starting from the moment video mounts.
     // If video fails to fire the 'playing' event within 3.5s (due to slow network buffering or iOS low-power modes), we fallback.
-    const fallbackTimeout = setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       console.log("Video playback stalled or failed to start within 3.5s. Falling back to WebP banner.");
       setVideoState("fallback");
     }, 3500);
@@ -91,15 +92,22 @@ export default function HeroBgVideo() {
     window.addEventListener("touchstart", handleInteraction);
 
     return () => {
-      clearTimeout(fallbackTimeout);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
       video.removeEventListener("ratechange", handleRateChange);
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
-  }, [shouldLoadVideo, videoState]);
+  }, [shouldLoadVideo]);
 
   const handlePlaying = () => {
     console.log("Hero background video playing. Transitioning visual layer.");
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     setVideoState("playing");
   };
 

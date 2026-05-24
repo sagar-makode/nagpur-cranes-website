@@ -11,6 +11,8 @@
   align-items: center;
   overflow: hidden;
   padding: 0;
+  /* Deep industrial themed golden-yellow glowing background placeholder */
+  background: radial-gradient(circle at 80% 25%, rgba(255, 184, 0, 0.18) 0%, rgba(11, 15, 25, 0.95) 60%, #050814 100%), #050814;
 }
 
 /* Slow-motion full-cover background video */
@@ -22,6 +24,8 @@
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
+  /* Deep industrial themed golden-yellow glowing background placeholder */
+  background: radial-gradient(circle at 80% 25%, rgba(255, 184, 0, 0.18) 0%, rgba(11, 15, 25, 0.95) 60%, #050814 100%), #050814;
   /* GPU hardware acceleration for smooth slow-motion playback, scaled up to hide black bars encoded in video */
   transform: scale(1.25) translateZ(0);
   -webkit-transform: scale(1.25) translateZ(0);
