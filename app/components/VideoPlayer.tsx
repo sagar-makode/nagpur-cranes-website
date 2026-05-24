@@ -93,14 +93,16 @@ export default function VideoPlayer() {
     >
       <video
         ref={videoRef}
-        src="/assets/hero-working.mp4"
         className={styles.videoSource}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onClick={togglePlay}
         playsInline
         loop
-      />
+      >
+        <source src="/assets/hero-working.webm" type="video/webm" />
+        <source src="/assets/hero-working.mp4" type="video/mp4" />
+      </video>
 
       {/* Large Center Play Overlay */}
       {!isPlaying && (

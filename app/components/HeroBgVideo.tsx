@@ -94,7 +94,6 @@ export default function HeroBgVideo() {
       {/* Video absolute-positioned, rendering directly without placeholder image */}
       <video
         ref={videoRef}
-        src="/assets/hero-working.mp4"
         autoPlay
         loop
         muted
@@ -112,7 +111,10 @@ export default function HeroBgVideo() {
           zIndex: 1
         }}
         title={`${siteData.companyName} - Heavy Equipment in Action`}
-      />
+      >
+        <source src="/assets/hero-working.webm" type="video/webm" />
+        <source src="/assets/hero-working.mp4" type="video/mp4" />
+      </video>
     </div>
   );
 }
