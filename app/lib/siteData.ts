@@ -1,12 +1,17 @@
 export const defaultSEO = {
   title: "Nagpur Cranes | Premium Crane Rental & Heavy Lifting Services in India",
-  description: "Nagpur Cranes offers safety-certified Farana, Telescopic Mobile, and lattice boom Crawler crane rentals from 15 to 400 Tons in India. Certified safety first, competitive pricing, and 24/7 onsite engineering support.",
+  description: "Nagpur Cranes provides safety-certified Crane Rental in Maharashtra, Chhattisgarh, and Central India. Rent Crawler, Telescopic, Hydra, Farana, & Mobile cranes (15T to 400T) with certified operators. Best crane hire rates in Nagpur.",
   keywords: [
+    // Primary Brand Keywords
     "nagpur crane",
-    "crane service in maharashtra",
+    "nagpur cranes",
+
     "nagpur crane service",
     "crane service in nagpur",
+    "crane service in maharashtra",
     "premium crane service in india",
+
+    // Original Core Keywords (Restored)
     "crane rental Nagpur",
     "heavy lifting service Nagpur",
     "hydraulic crane service Nagpur",
@@ -15,6 +20,40 @@ export const defaultSEO = {
     "Farana crane rental Maharashtra",
     "crane service in India",
     "heavy rigging services India",
+    "crane service in central India",
+    "crane service in Chhattisgarh",
+    "crane service in Odisha",
+    "crane service in MP",
+    
+    // Highly Targeted English Keywords
+    "Crane rental Maharashtra",
+    "Crane hire Nagpur",
+    "Heavy equipment rental Chhattisgarh",
+    "Hydraulic crane hire India",
+    "Boom lift rental Nagpur",
+    "Industrial lifting equipment Maharashtra",
+    "Construction crane rental Central India",
+    "Crawler crane services Chhattisgarh",
+    "Telescopic crane hire Maharashtra",
+    "Certified crane operators India",
+
+    // Hindi & Hinglish Localized Keywords
+    "क्रैन सर्विस नागपुर",
+    "महाराष्ट्र में क्रेन सर्विस",
+    "क्रेन सर्विस कांटेक्ट नंबर",
+    "nagpur me crane service",
+    "maharashtra me crane rental",
+    "saste rate me crane rental nagpur",
+    "sabse achhi crane service nagpur",
+
+    // Marathi & Marathish Localized Keywords
+    "नागपूर क्रेन भाड्याने",
+    "क्रेन भाड्याने नागपूर",
+    "महाराष्ट्रातील सर्वोत्तम क्रेन सेवा",
+    "nagpurat crane service",
+    "crane bhadyane dene nagpur",
+    "hydra crane service nagpur",
+    "maharashtratil sarvottam crane rental",
   ],
   ogImage: "/assets/about-operations.webp",
 };

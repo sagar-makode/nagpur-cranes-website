@@ -81,24 +81,24 @@ export const metadata: Metadata = {
           "@id": `${siteData.domain}/#organization`,
           "name": siteData.companyName,
           "url": siteData.domain,
-          "logo": `${siteData.domain}/assets/logo.svg`,
+          "logo": `${siteData.domain}/assets/logo-icon.webp`,
           "image": `${siteData.domain}/assets/about-operations.webp`,
-        "description": "Leading provider of crane rentals and heavy lifting services in Nagpur, Maharashtra, and across Central India.",
-        "telephone": siteData.phone,
-        "email": siteData.email,
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Plot no. 1154 Ward no. 3 Dobinagar Wadadhamana Amaravati Road",
-          "addressLocality": "Nagpur",
-          "addressRegion": "Maharashtra",
-          "postalCode": "440023",
-          "addressCountry": "IN"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "21.1503",
-          "longitude": "79.0044"
-        },
+          "description": defaultSEO.description,
+          "telephone": siteData.phone,
+          "email": siteData.email,
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Plot no. 1154 Ward no. 3 Dobinagar Wadadhamana Amaravati Road",
+            "addressLocality": "Nagpur",
+            "addressRegion": "Maharashtra",
+            "postalCode": "440023",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "21.137795",
+            "longitude": "78.950198"
+          },
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": siteData.phone,
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
         "provider": {
           "@id": `${siteData.domain}/#organization`
         },
-        "areaServed": ["Maharashtra", "Madhya Pradesh", "Chhattisgarh", "Odisha"],
+        "areaServed": ["Maharashtra", "Madhya Pradesh", "Chhattisgarh", "Odisha", "Central India", "India"],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Heavy Machinery and Crane Rentals",
