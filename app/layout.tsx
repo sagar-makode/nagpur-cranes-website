@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingActions from "./components/FloatingActions";
 import { siteData, defaultSEO } from "./lib/siteData";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -164,6 +166,8 @@ export const metadata: Metadata = {
         {children}
         <Footer />
         <FloatingActions />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
