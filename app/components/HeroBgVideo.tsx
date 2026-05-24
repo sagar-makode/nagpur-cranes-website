@@ -46,32 +46,18 @@ export default function HeroBgVideo() {
   useEffect(() => {
     if (!shouldLoadVideo || videoState === "fallback") return;
 
-    // Second line of defense: Safety timeout of 3.5s starting from the moment video mounts.
-    // If video fails to fire the 'playing' event within 3.5s (due to slow network buffering or iOS low-power modes), we fallback.
+    // Second line of defense: Safety timeout of 8.0s starting from the moment video mounts.
+    // Gives moderate/slow connections ample time to buffer and start playing, preventing premature fallback.
     timeoutRef.current = setTimeout(() => {
-      console.log("Video playback stalled or failed to start within 3.5s. Falling back to WebP banner.");
+      console.log("Video playback stalled or failed to start within 8s. Falling back to WebP banner.");
       setVideoState("fallback");
-    }, 3500);
+    }, 8000);
 
     const video = videoRef.current;
     if (!video) return;
 
-    // Force muted & playsinline programmatically to satisfy aggressive browser autoplay policies
-    video.muted = true;
-    video.playsInline = true;
+    // Enforce 0.5x speed on mount just in case metadata already loaded
     video.playbackRate = 0.5;
-
-    const triggerPlay = () => {
-      video.play()
-        .then(() => {
-          // Playback successfully started
-        })
-        .catch((err) => {
-          console.log("Autoplay was blocked by browser policy, waiting for interaction:", err);
-        });
-    };
-
-    triggerPlay();
 
     // Re-apply playback rate if the browser resets it on loop
     const handleRateChange = () => {
@@ -80,9 +66,17 @@ export default function HeroBgVideo() {
       }
     };
 
-    // Safe fallback interaction listener to boot playback
+    // Safe fallback interaction listener to boot playback if browser policies block native autoplay
     const handleInteraction = () => {
-      triggerPlay();
+      if (video && video.paused) {
+        video.play()
+          .then(() => {
+            console.log("Interactive backup playback booted successfully.");
+          })
+          .catch((err) => {
+            console.log("Interactive play backup was blocked:", err);
+          });
+      }
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
@@ -142,6 +136,9 @@ export default function HeroBgVideo() {
           playsInline
           preload="auto"
           onPlaying={handlePlaying}
+          onLoadedMetadata={(e) => {
+            e.currentTarget.playbackRate = 0.5;
+          }}
           style={{
             position: "absolute",
             top: 0,
