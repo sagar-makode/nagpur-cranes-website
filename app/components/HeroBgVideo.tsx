@@ -8,10 +8,8 @@ import { siteData } from "../lib/siteData";
 export default function HeroBgVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [videoState, setVideoState] = useState<"loading" | "playing" | "fallback">("loading");
 
-  // useEffect 1: Defer video loading until the page has fully loaded all other assets
   useEffect(() => {
     // 1. First line of defense: check navigator.connection API (Android/Chrome)
     if (typeof window !== "undefined" && navigator) {
@@ -26,37 +24,17 @@ export default function HeroBgVideo() {
       }
     }
 
-    const startVideoLoading = () => {
-      console.log("All critical resources loaded. Initiating low-priority video mount.");
-      setShouldLoadVideo(true);
-    };
-
-    // If the document is already fully parsed and loaded, wait 1s for layout stabilization, then load video
-    if (document.readyState === "complete") {
-      const timer = setTimeout(startVideoLoading, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      // Otherwise, wait for the browser's native 'load' event (after all CSS, fonts, and images are loaded)
-      window.addEventListener("load", startVideoLoading);
-      return () => window.removeEventListener("load", startVideoLoading);
-    }
-  }, []);
-
-  // useEffect 2: Handle active playback and slow-network safety timers once deferred loading triggers
-  useEffect(() => {
-    if (!shouldLoadVideo || videoState === "fallback") return;
-
-    // Second line of defense: Safety timeout of 8.0s starting from the moment video mounts.
-    // Gives moderate/slow connections ample time to buffer and start playing, preventing premature fallback.
+    // 2. Safety timeout of 10.0s starting from the moment video mounts.
+    // Gives the video ample time to buffer in parallel and play, preventing premature fallback.
     timeoutRef.current = setTimeout(() => {
-      console.log("Video playback stalled or failed to start within 8s. Falling back to WebP banner.");
+      console.log("Video playback stalled or failed to start within 10s. Falling back to WebP banner.");
       setVideoState("fallback");
-    }, 8000);
+    }, 10000);
 
     const video = videoRef.current;
     if (!video) return;
 
-    // Enforce 0.5x speed on mount just in case metadata already loaded
+    // Enforce 0.5x speed on mount
     video.playbackRate = 0.5;
 
     // Re-apply playback rate if the browser resets it on loop
@@ -94,7 +72,7 @@ export default function HeroBgVideo() {
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
     };
-  }, [shouldLoadVideo]);
+  }, []);
 
   const handlePlaying = () => {
     console.log("Hero background video playing. Transitioning visual layer.");
@@ -125,7 +103,7 @@ export default function HeroBgVideo() {
       />
 
       {/* Video absolute-positioned over image, starts invisible (opacity 0) and fades in smoothly once playing */}
-      {shouldLoadVideo && videoState !== "fallback" && (
+      {videoState !== "fallback" && (
         <video
           ref={videoRef}
           src="/assets/hero-working.mp4"
