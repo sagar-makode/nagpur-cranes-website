@@ -111,34 +111,8 @@ export default function HeroBgVideo() {
     setVideoState("playing");
   };
 
-  // If fallback is triggered, immediately render the optimized 92KB WebP image and unmount the video completely.
-  if (videoState === "fallback") {
-    return (
-      <Image
-        src="/assets/about-operations.webp"
-        alt={`${siteData.companyName} Operations`}
-        fill
-        priority
-        className={styles.heroBgVideo}
-        style={{ objectFit: "cover", zIndex: 1 }}
-      />
-    );
-  }
-
-  // If page hasn't fully loaded yet, show the static optimized WebP image and DO NOT render the video element yet.
-  if (!shouldLoadVideo) {
-    return (
-      <Image
-        src="/assets/about-operations.webp"
-        alt={`${siteData.companyName} Operations`}
-        fill
-        priority
-        className={styles.heroBgVideo}
-        style={{ objectFit: "cover", zIndex: 1 }}
-      />
-    );
-  }
-
+  // Unified render tree to prevent React from unmounting and recreating the Image DOM node.
+  // This completely eliminates any split-second image-reloading flashes or background color bleed-throughs.
   return (
     <div className={styles.heroBgVideo} style={{ position: "absolute", zIndex: 0 }}>
       {/* Lightweight WebP banner shown initially, and fades out when video is active */}
@@ -157,30 +131,32 @@ export default function HeroBgVideo() {
       />
 
       {/* Video absolute-positioned over image, starts invisible (opacity 0) and fades in smoothly once playing */}
-      <video
-        ref={videoRef}
-        src="/assets/hero-working.mp4"
-        poster="/assets/about-operations.webp"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        onPlaying={handlePlaying}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          opacity: videoState === "playing" ? 1 : 0,
-          transition: "opacity 1.2s ease-in-out",
-          pointerEvents: "none",
-          zIndex: 2
-        }}
-        title={`${siteData.companyName} - Heavy Equipment in Action`}
-      />
+      {shouldLoadVideo && videoState !== "fallback" && (
+        <video
+          ref={videoRef}
+          src="/assets/hero-working.mp4"
+          poster="/assets/about-operations.webp"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          onPlaying={handlePlaying}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: videoState === "playing" ? 1 : 0,
+            transition: "opacity 1.2s ease-in-out",
+            pointerEvents: "none",
+            zIndex: 2
+          }}
+          title={`${siteData.companyName} - Heavy Equipment in Action`}
+        />
+      )}
     </div>
   );
 }
