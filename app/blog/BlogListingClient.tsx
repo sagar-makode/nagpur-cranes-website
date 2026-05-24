@@ -69,7 +69,7 @@ export default function BlogListingClient() {
 
       {/* Blog listing grid */}
       {filteredPosts.length > 0 ? (
-        <div className="responsive-grid" style={{ marginTop: "40px" }}>
+        <div className="responsive-grid" style={{ marginTop: "40px", gap: "24px" }}>
           {filteredPosts.map((post) => (
             <article key={post.slug} className="glass-card animate-fade-in">
               <div className={styles.blogCardContent}>
