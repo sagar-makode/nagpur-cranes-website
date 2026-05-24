@@ -1,165 +1,105 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useRef, useEffect } from "react";
 import styles from "../page.module.css";
 import { siteData } from "../lib/siteData";
 
 export default function HeroBgVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const retryRef = useRef<NodeJS.Timeout | null>(null);
-  const [isVideoReady, setIsVideoReady] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    let cancelled = false;
-    const scheduleRetry = () => {
-      if (cancelled || retryRef.current) return;
-      retryRef.current = setTimeout(() => {
-        retryRef.current = null;
-        startPlayback();
-      }, 1200);
-    };
+    // Explicitly set muted & playsInline programmatically to ensure autoplay compliance
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.playbackRate = 0.5;
 
-    const startPlayback = () => {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.playsInline = true;
-      video.playbackRate = 0.5;
+    let playPromise: Promise<void> | null = null;
 
-      const playAttempt = video.play();
-      if (playAttempt) {
-        playAttempt.catch(() => {
-          scheduleRetry();
+    const playVideo = () => {
+      if (!video.paused) return;
+
+      playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // Playback might be delayed until user interaction
+          console.log("Autoplay prevented or interrupted:", error);
         });
       }
     };
 
-    // Keep the still image visible, but never permanently remove the video.
-    // Cold first visits can need longer buffering than refreshes because the MP4 is not cached yet.
-    timeoutRef.current = setTimeout(() => {
-      startPlayback();
-    }, 300);
+    // Attempt to play immediately on mount
+    playVideo();
 
-    video.playbackRate = 0.5;
-
-    // Re-apply playback rate if the browser resets it on loop
+    // Re-apply playback rate if the browser resets it on loop/load
     const handleRateChange = () => {
       if (video.playbackRate !== 0.5) {
         video.playbackRate = 0.5;
       }
     };
 
-    const handleReady = () => {
-      setIsVideoReady(true);
-      startPlayback();
+    const handlePlaying = () => {
+      if (video.playbackRate !== 0.5) {
+        video.playbackRate = 0.5;
+      }
     };
 
+    // Attempt to play on user interaction if blocked by browser policy
     const handleInteraction = () => {
-      if (video && video.paused) {
-        startPlayback();
-      }
+      playVideo();
+      cleanupInteraction();
+    };
+
+    const setupInteraction = () => {
+      window.addEventListener("click", handleInteraction, { passive: true });
+      window.addEventListener("touchstart", handleInteraction, { passive: true });
+      window.addEventListener("pointerdown", handleInteraction, { passive: true });
+    };
+
+    const cleanupInteraction = () => {
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("touchstart", handleInteraction);
       window.removeEventListener("pointerdown", handleInteraction);
-    };
-
-    const handleVisibilityChange = () => {
-      if (!document.hidden && video.paused) {
-        startPlayback();
-      }
-    };
-
-    const handleWindowFocus = () => {
-      if (video.paused) {
-        startPlayback();
-      }
     };
 
     video.addEventListener("ratechange", handleRateChange);
-    video.addEventListener("loadeddata", handleReady);
-    video.addEventListener("canplay", handleReady);
-    video.addEventListener("playing", handleReady);
-    window.addEventListener("click", handleInteraction);
-    window.addEventListener("touchstart", handleInteraction);
-    window.addEventListener("pointerdown", handleInteraction);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    window.addEventListener("focus", handleWindowFocus);
-    video.load();
-    startPlayback();
+    video.addEventListener("playing", handlePlaying);
+    video.addEventListener("play", handlePlaying);
+    setupInteraction();
+
+    // Resume when coming back to the page/tab
+    const handleVisibilityOrFocus = () => {
+      if (!document.hidden && video.paused) {
+        playVideo();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityOrFocus);
+    window.addEventListener("focus", handleVisibilityOrFocus);
 
     return () => {
-      cancelled = true;
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-      if (retryRef.current) {
-        clearTimeout(retryRef.current);
-        retryRef.current = null;
-      }
+      cleanupInteraction();
       video.removeEventListener("ratechange", handleRateChange);
-      video.removeEventListener("loadeddata", handleReady);
-      video.removeEventListener("canplay", handleReady);
-      video.removeEventListener("playing", handleReady);
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("pointerdown", handleInteraction);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      window.removeEventListener("focus", handleWindowFocus);
+      video.removeEventListener("playing", handlePlaying);
+      video.removeEventListener("play", handlePlaying);
+      document.removeEventListener("visibilitychange", handleVisibilityOrFocus);
+      window.removeEventListener("focus", handleVisibilityOrFocus);
     };
   }, []);
 
-  const handlePlaying = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-    if (retryRef.current) {
-      clearTimeout(retryRef.current);
-      retryRef.current = null;
-    }
-    setIsVideoReady(true);
-  };
-
-  // Unified render tree to prevent React from unmounting and recreating the Image DOM node.
-  // This completely eliminates any split-second image-reloading flashes or background color bleed-throughs.
   return (
     <div className={styles.heroBgVideo} style={{ position: "absolute", zIndex: 0 }}>
-      {/* Lightweight WebP banner shown initially, and fades out when video is active */}
-      <Image
-        src="/assets/about-operations.webp"
-        alt={`${siteData.companyName} Operations`}
-        fill
-        priority
-        style={{
-          objectFit: "cover",
-          opacity: isVideoReady ? 0 : 1,
-          transition: "opacity 1.2s ease-in-out",
-          pointerEvents: "none",
-          zIndex: 2
-        }}
-      />
-
-      {/* Video absolute-positioned over image, starts invisible (opacity 0) and fades in smoothly once playing */}
+      {/* Video absolute-positioned, rendering directly without placeholder image */}
       <video
         ref={videoRef}
-        poster="/assets/about-operations.webp"
+        src="/assets/hero-working.mp4"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        onPlaying={handlePlaying}
-        onPlay={handlePlaying}
-        onLoadedMetadata={(e) => {
-          e.currentTarget.muted = true;
-          e.currentTarget.defaultMuted = true;
-          e.currentTarget.playbackRate = 0.5;
-        }}
         style={{
           position: "absolute",
           top: 0,
@@ -172,9 +112,8 @@ export default function HeroBgVideo() {
           zIndex: 1
         }}
         title={`${siteData.companyName} - Heavy Equipment in Action`}
-      >
-        <source src="/assets/hero-working.mp4" type="video/mp4" />
-      </video>
+      />
     </div>
   );
 }
+

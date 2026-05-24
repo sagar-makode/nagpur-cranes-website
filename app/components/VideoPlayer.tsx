@@ -93,7 +93,7 @@ export default function VideoPlayer() {
     >
       <video
         ref={videoRef}
-        src="https://assets.mixkit.co/videos/preview/mixkit-crane-lifting-cargo-containers-at-a-port-34320-large.mp4"
+        src="/assets/hero-working.mp4"
         className={styles.videoSource}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
@@ -139,7 +139,7 @@ export default function VideoPlayer() {
 
           <div className={styles.rightControls}>
             <div className={styles.tipNote}>
-              <span>Supports Local `crane-working.mp4`</span>
+              <span>Using Local `hero-working.mp4`</span>
             </div>
             <button className={styles.controlButton} onClick={toggleFullscreen} aria-label="Fullscreen">
               <Maximize size={18} />
