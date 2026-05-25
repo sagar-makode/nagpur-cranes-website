@@ -38,7 +38,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Nagpur Cranes" }],
   robots: "index, follow",
   alternates: {
-    canonical: siteData.domain, // Adjust to their domain if different
     languages: {
       "en-IN": siteData.domain,
       "x-default": siteData.domain,
