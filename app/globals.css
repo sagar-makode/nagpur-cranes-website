@@ -225,7 +225,7 @@ button, input, select, textarea {
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-700) 100%);
-  box-shadow: 0 8px 25px rgba(70, 95, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(70, 95, 255, 0.4), 0 0 0 4px rgba(70, 95, 255, 0.25);
   transform: translateY(-2px);
 }
 
@@ -235,6 +235,7 @@ button, input, select, textarea {
 
 .btn-primary:active {
   transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(70, 95, 255, 0.25), 0 0 0 2px rgba(70, 95, 255, 0.2);
 }
 
 /* Luxury Secondary Button */
@@ -441,27 +442,6 @@ button, input, select, textarea {
   z-index: 10;
 }
 
-/* Btn-primary — subtle ring pulse on hover */
-.btn-primary {
-  position: relative;
-  overflow: visible;
-}
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: inherit;
-  border: 2px solid var(--accent-primary);
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-  border-radius: var(--radius-pill);
-}
-.btn-primary:hover::after {
-  opacity: 0.35;
-  transform: scale(1.05);
-}
 
 /* Section-header — animated accent underline */
 .section-header h2 {
