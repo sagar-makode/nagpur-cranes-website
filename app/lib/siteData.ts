@@ -61,7 +61,7 @@ export const defaultSEO = {
 export const siteData = {
   companyName: "NAGPUR CRANES",
   owner: "Nagpur Cranes",
-  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://nagpurcranes.netlify.app",
+  domain: process.env.NEXT_PUBLIC_SITE_URL || "https://www.nagpurcranes.in",
   phone: "+91 7385703929",
   email: "nagpurcranes@gmail.com",
   address: "Plot no. 1154, Ward no. 3, Dobinagar, Wadadhamana, Amaravati Road, Nagpur - 440023",
