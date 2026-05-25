@@ -7,6 +7,9 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "About Us | Nagpur Cranes - Over 15 Years of Heavy Lifting Expertise",
   description: "Learn about Nagpur Cranes, Central India's leading lifting partner. Rent high-capacity crawler, telescopic mobile, and pick & carry farana cranes in Maharashtra, MP, Chhattisgarh, and Odisha.",
+  alternates: {
+    canonical: `${siteData.domain}/about`,
+  },
   keywords: [
     ...defaultSEO.keywords,
     "about Nagpur Cranes",

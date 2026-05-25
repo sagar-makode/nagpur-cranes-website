@@ -22,6 +22,9 @@ export const metadata: Metadata = {
   title: defaultSEO.title,
   description: defaultSEO.description,
   keywords: defaultSEO.keywords,
+  alternates: {
+    canonical: siteData.domain,
+  },
   openGraph: {
     type: "website",
     url: siteData.domain,

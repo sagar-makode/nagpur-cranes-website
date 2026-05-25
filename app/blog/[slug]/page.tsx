@@ -31,6 +31,9 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   return {
     title: `${post.title} | ${siteData.companyName} Blog`,
     description: baseDescription,
+    alternates: {
+      canonical: `${siteData.domain}/blog/${post.slug}`,
+    },
     keywords: [
       ...defaultSEO.keywords,
       ...post.keywords,

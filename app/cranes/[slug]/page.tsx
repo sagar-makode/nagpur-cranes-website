@@ -97,6 +97,9 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   return {
     title: `${crane.title} Rentals | Nagpur Cranes - ${crane.capacity}`,
     description: baseDescription,
+    alternates: {
+      canonical: `${siteData.domain}/cranes/${crane.slug}`,
+    },
     keywords: [
       ...defaultSEO.keywords,
       `rent ${titleLower}`,

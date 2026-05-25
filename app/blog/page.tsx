@@ -1,11 +1,15 @@
 import React from "react";
 import type { Metadata } from "next";
 import BlogListingClient from "./BlogListingClient";
+import { siteData } from "../lib/siteData";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
   title: "Heavy Lifting & Crane Safety Blog | Nagpur Cranes",
   description: "Read the latest guides, lifting calculators, engineering reviews, and industry crane safety standards from Nagpur Cranes' certified heavy operations desk.",
+  alternates: {
+    canonical: `${siteData.domain}/blog`,
+  },
   keywords: [
     "crane safety blog India",
     "heavy lifting guides",
