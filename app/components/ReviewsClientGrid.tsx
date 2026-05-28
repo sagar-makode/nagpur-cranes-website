@@ -150,8 +150,8 @@ export default function ReviewsClientGrid({ initialReviews, isHomepage = true }:
             ))}
           </div>
 
-          {/* View More Reviews Redirection Link (Shown on homepage only when there are more reviews) */}
-          {isHomepage && hasMore && (
+          {/* View More Reviews Redirection Link (Always shown on homepage to navigate to full list) */}
+          {isHomepage && (
             <div className={styles.viewMoreContainer}>
               <Link href="/reviews" className={styles.viewMoreBtn} aria-label="View More Reviews">
                 View More Reviews
