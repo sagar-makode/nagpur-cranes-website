@@ -8,7 +8,7 @@ export interface Review {
 export const staticReviews: Review[] = [
   {
     date: "2026-05-28",
-    name: "Vaibhav Mahajan",
+    name: "Ashish singh",
     rating: 5,
     comment: "Highly professional crane rental company in Nagpur! Extremely reliable crew, pristine machinery condition, and perfect execution on site.",
   },

@@ -114,6 +114,8 @@ export const siteData = {
   quoteUrl: "/contact",
   description:
     "Central India's leading crane rental service provider. Offering high-capacity Crawler, Farana, and Mobile Telescopic cranes from 15 to 400 tons.",
+  facebookUrl: "https://www.facebook.com/profile.php?id=61590344435163",
+  instagramUrl: "https://www.instagram.com/nagpurcranes",
 };
 
 export const navLinks = [

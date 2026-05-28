@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Phone, Mail, MapPin, CheckCircle, AlertCircle, ArrowRight, ShieldCheck } from "lucide-react";
+import { Phone, Mail, MapPin, CheckCircle, AlertCircle, ArrowRight, ShieldCheck, Facebook, Instagram } from "lucide-react";
 import { siteData } from "../lib/siteData";
 import styles from "./contact.module.css";
 
@@ -209,6 +209,20 @@ function ContactContent() {
             <div>
               <strong>100% Insured Fleet</strong>
               <p>Our heavy rigging assemblies and operators carry complete corporate insurance protection.</p>
+            </div>
+          </div>
+
+          <div className={styles.socialCard}>
+            <span className={styles.socialLabel}>Connect With Us</span>
+            <div className={styles.socialIconsList}>
+              <a href={siteData.facebookUrl} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} aria-label="Facebook">
+                <Facebook size={18} />
+                <span>Facebook</span>
+              </a>
+              <a href={siteData.instagramUrl} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} aria-label="Instagram">
+                <Instagram size={18} />
+                <span>Instagram</span>
+              </a>
             </div>
           </div>
         </div>

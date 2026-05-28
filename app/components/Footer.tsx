@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Shield, Settings } from "lucide-react";
+import { Mail, Phone, MapPin, Shield, Settings, Facebook, Instagram } from "lucide-react";
 import { siteData } from "../lib/siteData";
 import styles from "./Footer.module.css";
 
@@ -27,6 +27,14 @@ export default function Footer() {
               <Settings size={16} className={styles.certIcon} />
               <span>24/7 Technical Support</span>
             </div>
+          </div>
+          <div className={styles.socialLinks}>
+            <a href={siteData.facebookUrl} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Facebook">
+              <Facebook size={18} />
+            </a>
+            <a href={siteData.instagramUrl} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+              <Instagram size={18} />
+            </a>
           </div>
         </div>
 

@@ -205,6 +205,32 @@
   margin-top: 8px;
 }
 
+.socialLinks {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+}
+
+.socialIcon:hover {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: var(--bg-secondary);
+  transform: translateY(-2px);
+}
+
 /* Bottom Bar */
 .bottomBar {
   border-top: 1px solid var(--border-light);
