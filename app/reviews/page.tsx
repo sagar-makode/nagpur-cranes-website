@@ -5,6 +5,8 @@ import ReviewsClientGrid from "../components/ReviewsClientGrid";
 import { getReviews } from "../lib/reviews";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Client Testimonials & Ratings | Nagpur Cranes",
   description: "Read real reviews, testimonials, and star ratings from our industrial and civil infrastructure clients across Central India.",
