@@ -17,6 +17,7 @@ import { getCranesData, getBlogPosts } from "./lib/data";
 import { siteData, defaultSEO } from "./lib/siteData";
 import type { Metadata } from "next";
 import styles from "./page.module.css";
+import TestimonialsSection from "./components/TestimonialsSection";
 
 export const metadata: Metadata = {
   title: defaultSEO.title,
@@ -50,22 +51,6 @@ export const metadata: Metadata = {
 export default function Home() {
   const cranes = getCranesData();
   const blogPosts = getBlogPosts();
-
-  // Testimonials
-  const reviews = [
-    {
-      name: "R. S. (Infrastructure Director)",
-      company: "Singhania Infra Projects",
-      rating: 5,
-      comment: "Rented their 300-ton Crawler crane for a highway bridge project. The equipment was in flawless condition and the operator was highly professional. Completed ahead of time!",
-    },
-    {
-      name: "A. D. (Logistics Operations Head)",
-      company: "Central Logistics India",
-      rating: 5,
-      comment: "We regularly hire their Farana cranes for factory maintenance. Pick & carry articulation is perfect for tight assembly environments. Best service and competitive prices in Nagpur.",
-    },
-  ];
 
   return (
     <main className={styles.main}>
@@ -423,31 +408,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. Testimonials Section */}
-      <section className={styles.testimonialsSection}>
-        <div className="container">
-          <div className="section-header">
-            <h2>Trusted By Top Infrastructure Firms</h2>
-            <p>Here is what construction and industrial leaders say about NAGPUR CRANES.</p>
-          </div>
-          <div className={`responsive-grid ${styles.testimonialsGrid}`}>
-            {reviews.map((rev, idx) => (
-              <div key={idx} className="glass-card" style={{ padding: "30px" }}>
-                <div className={styles.ratingRow}>
-                  {[...Array(rev.rating)].map((_, i) => (
-                    <Star key={i} size={16} fill="var(--accent-primary)" stroke="var(--accent-primary)" />
-                  ))}
-                </div>
-                <p className={styles.reviewText}>"{rev.comment}"</p>
-                <div className={styles.reviewUser}>
-                  <strong>{rev.name}</strong>
-                  <span>{rev.company}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 6. Dynamic Testimonials Section */}
+      <TestimonialsSection />
 
       {/* 7. Interactive Call-To-Action (CTA) */}
       <section className={styles.ctaSection}>

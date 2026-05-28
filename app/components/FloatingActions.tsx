@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Phone, Star } from "lucide-react";
 import { siteData } from "../lib/siteData";
 import styles from "./FloatingActions.module.css";
+import FeedbackModal from "./FeedbackModal";
 
 function WhatsAppIcon() {
   return (
@@ -29,29 +30,45 @@ function WhatsAppIcon() {
 }
 
 export default function FloatingActions() {
-  return (
-    <div className={styles.wrapper}>
-      {/* Direct Phone Call */}
-      <Link
-        href={`tel:${siteData.phone.replace(/\s+/g, "")}`}
-        className={`${styles.actionButton} ${styles.phone}`}
-        aria-label={`Call ${siteData.companyName}`}
-      >
-        <Phone size={20} />
-        <span className={styles.tooltip}>Call Now</span>
-      </Link>
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
-      {/* WhatsApp Message */}
-      <Link
-        href={siteData.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`${styles.actionButton} ${styles.whatsapp}`}
-        aria-label="Chat on WhatsApp"
-      >
-        <WhatsAppIcon />
-        <span className={styles.tooltip}>WhatsApp Chat</span>
-      </Link>
-    </div>
+  return (
+    <>
+      <div className={styles.wrapper}>
+        {/* Rate Us / Feedback Option */}
+        <button
+          onClick={() => setIsFeedbackOpen(true)}
+          className={`${styles.actionButton} ${styles.feedback}`}
+          aria-label="Rate Us / Give Feedback"
+        >
+          <Star size={20} className={styles.starFill} />
+          <span className={styles.tooltip}>Rate Us</span>
+        </button>
+
+        {/* Direct Phone Call */}
+        <Link
+          href={`tel:${siteData.phone.replace(/\s+/g, "")}`}
+          className={`${styles.actionButton} ${styles.phone}`}
+          aria-label={`Call ${siteData.companyName}`}
+        >
+          <Phone size={20} />
+          <span className={styles.tooltip}>Call Now</span>
+        </Link>
+
+        {/* WhatsApp Message */}
+        <Link
+          href={siteData.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${styles.actionButton} ${styles.whatsapp}`}
+          aria-label="Chat on WhatsApp"
+        >
+          <WhatsAppIcon />
+          <span className={styles.tooltip}>WhatsApp Chat</span>
+        </Link>
+      </div>
+
+      <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
+    </>
   );
 }
