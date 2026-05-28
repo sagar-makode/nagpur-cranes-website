@@ -18,9 +18,12 @@ export async function getReviews(): Promise<Review[]> {
   }
 
   try {
-    // Disable caching completely so that all additions, edits, or deletions in the Google Sheet
-    // reflect instantly on every page refresh on Vercel without needing a redeployment!
-    const response = await fetch(googleSheetUrl, { cache: "no-store" });
+    // In development mode, bypass caching to show changes instantly.
+    // In production, cache for 10 seconds so homepage clicks are instant (CDN speed) while sheet updates sync in under 10 seconds!
+    const response = await fetch(googleSheetUrl, process.env.NODE_ENV === "development"
+      ? { cache: "no-store" }
+      : { next: { revalidate: 10 } }
+    );
 
     if (!response.ok) {
       throw new Error(`Google Sheets fetch failed with status: ${response.status}`);

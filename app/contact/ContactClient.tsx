@@ -21,6 +21,14 @@ function ContactContent() {
     craneType: "",
   });
 
+  const [formErrors, setFormErrors] = useState({
+    location: "",
+    name: "",
+    phone: "",
+    ton: "",
+    email: "",
+  });
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -37,15 +45,93 @@ function ContactContent() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear the error for this field as the user types
+    if (formErrors[name as keyof typeof formErrors]) {
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const handleReset = () => {
+    setFormData({
+      location: "",
+      name: "",
+      phone: "",
+      email: "",
+      siteDetails: "",
+      ton: "",
+      craneType: "",
+    });
+    setFormErrors({
+      location: "",
+      name: "",
+      phone: "",
+      ton: "",
+      email: "",
+    });
+    setErrorMsg("");
+    setIsSubmitted(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
+    
+    const errors = {
+      location: "",
+      name: "",
+      phone: "",
+      ton: "",
+      email: "",
+    };
+    let hasError = false;
 
-    // Simple validation
-    if (!formData.name.trim() || !formData.phone.trim() || !formData.location.trim() || !formData.ton.trim()) {
-      setErrorMsg("Please fill in all required fields (Name, Phone Number, Project Location, and Required Tonnage).");
+    // 1. Location Validation
+    if (!formData.location.trim()) {
+      errors.location = "Project site location is required.";
+      hasError = true;
+    }
+
+    // 2. Name Validation
+    if (!formData.name.trim()) {
+      errors.name = "Your name or company name is required.";
+      hasError = true;
+    } else if (formData.name.trim().length < 3) {
+      errors.name = "Please enter a valid name (minimum 3 characters).";
+      hasError = true;
+    }
+
+    // 3. Phone Validation
+    const phoneTrimmed = formData.phone.trim();
+    const phoneRegex = /^\+?[0-9\s\-()]{10,20}$/;
+    const phoneDigits = phoneTrimmed.replace(/[^0-9]/g, "");
+    if (!phoneTrimmed) {
+      errors.phone = "Phone number is required.";
+      hasError = true;
+    } else if (!phoneRegex.test(phoneTrimmed) || phoneDigits.length < 10) {
+      errors.phone = "Please enter a valid mobile number (minimum 10 digits).";
+      hasError = true;
+    }
+
+    // 4. Tonnage Validation
+    if (!formData.ton.trim()) {
+      errors.ton = "Required tonnage is required.";
+      hasError = true;
+    }
+
+    // 5. Email Validation (Optional but must be valid if entered)
+    const emailTrimmed = formData.email.trim();
+    if (emailTrimmed) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailTrimmed)) {
+        errors.email = "Please enter a valid email address (e.g. engineer@project.com).";
+        hasError = true;
+      }
+    }
+
+    setFormErrors(errors);
+
+    if (hasError) {
+      setErrorMsg("Please correct the errors in the fields below.");
       return;
     }
 
@@ -87,9 +173,9 @@ function ContactContent() {
 
         <div className={styles.contactCards}>
           <div className={styles.contactCard}>
-            <div className={styles.iconBox}>
+            <a href={`tel:${siteData.phone.replace(/\s+/g, "")}`} className={styles.iconBox} aria-label="Call Direct Phone Line">
               <Phone size={20} />
-            </div>
+            </a>
             <div className={styles.contactDetails}>
               <span>Direct Phone Line</span>
               <a href={`tel:${siteData.phone.replace(/\s+/g, "")}`}>{siteData.phone}</a>
@@ -97,9 +183,9 @@ function ContactContent() {
           </div>
 
           <div className={styles.contactCard}>
-            <div className={styles.iconBox}>
+            <a href={`mailto:${siteData.email}`} className={styles.iconBox} aria-label="Send Official Email">
               <Mail size={20} />
-            </div>
+            </a>
             <div className={styles.contactDetails}>
               <span>Official Email Address</span>
               <a href={`mailto:${siteData.email}`}>{siteData.email}</a>
@@ -107,9 +193,9 @@ function ContactContent() {
           </div>
 
           <div className={styles.contactCard}>
-            <div className={styles.iconBox}>
+            <a href={siteData.addressUrl} target="_blank" rel="noopener noreferrer" className={styles.iconBox} aria-label="View Operational Headquarters Location">
               <MapPin size={20} />
-            </div>
+            </a>
             <div className={styles.contactDetails}>
               <span>{siteData.addressLabel}</span>
               <a href={siteData.addressUrl} target="_blank" rel="noopener noreferrer">
@@ -131,7 +217,7 @@ function ContactContent() {
       <section className={styles.formSection}>
         <div className={styles.formCol}>
           {!isSubmitted ? (
-            <form className={`${styles.form} glass-card`} onSubmit={handleSubmit}>
+            <form className={`${styles.form} glass-card`} onSubmit={handleSubmit} noValidate>
               <h2 className={styles.formTitle}>Rental Inquiry Form</h2>
               <p className={styles.formSubtitle}>Submit your site requirements and our expert team will deliver a customized quote.</p>
 
@@ -154,6 +240,7 @@ function ContactContent() {
                   className="input-field"
                   required
                 />
+                {formErrors.location && <span className={styles.fieldError}>{formErrors.location}</span>}
               </div>
 
               <div className="responsive-grid" style={{ gap: "20px" }}>
@@ -169,6 +256,7 @@ function ContactContent() {
                     className="input-field"
                     required
                   />
+                  {formErrors.name && <span className={styles.fieldError}>{formErrors.name}</span>}
                 </div>
 
                 <div className="input-group">
@@ -183,6 +271,7 @@ function ContactContent() {
                     className="input-field"
                     required
                   />
+                  {formErrors.phone && <span className={styles.fieldError}>{formErrors.phone}</span>}
                 </div>
                 <div className="input-group ton-group">
                   <label htmlFor="ton">Required Tonnage *</label>
@@ -196,6 +285,7 @@ function ContactContent() {
                     className="input-field"
                     required
                   />
+                  {formErrors.ton && <span className={styles.fieldError}>{formErrors.ton}</span>}
                 </div>
               </div>
 
@@ -210,6 +300,7 @@ function ContactContent() {
                   placeholder="e.g. engineer@project.com"
                   className="input-field"
                 />
+                {formErrors.email && <span className={styles.fieldError}>{formErrors.email}</span>}
               </div>
 
               <div className="input-group">
@@ -262,7 +353,7 @@ function ContactContent() {
                 Nagpur Cranes Team will review your request and contact you at {formData.phone} shortly with a detailed quote.
               </p>
 
-              <button className="btn-primary" onClick={() => setIsSubmitted(false)}>
+              <button className="btn-primary" onClick={handleReset}>
                 <span>Submit New Quote</span>
               </button>
             </div>

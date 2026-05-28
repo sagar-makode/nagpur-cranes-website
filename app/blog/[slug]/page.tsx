@@ -97,7 +97,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
       "name": siteData.companyName,
       "logo": {
         "@type": "ImageObject",
-        "url": `${siteData.domain}/assets/logo.svg`
+        "url": `${siteData.domain}/assets/logo.webp`
       }
     }
   };

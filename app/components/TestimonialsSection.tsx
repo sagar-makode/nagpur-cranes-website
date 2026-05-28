@@ -2,13 +2,11 @@ import React from "react";
 import styles from "./TestimonialsSection.module.css";
 import AddReviewButton from "./AddReviewButton";
 import ReviewsClientGrid from "./ReviewsClientGrid";
-import { getReviews } from "../lib/reviews";
+import { staticReviews } from "../lib/staticReviews";
 
-export default async function TestimonialsSection() {
-  const reviews = await getReviews();
-
+export default function TestimonialsSection() {
   // Sort by rating descending so 5-star ratings come first by default
-  const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
+  const sortedReviews = [...staticReviews].sort((a, b) => b.rating - a.rating);
 
   return (
     <section className={styles.section} id="reviews">

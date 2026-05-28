@@ -3,9 +3,8 @@ import styles from "../components/TestimonialsSection.module.css";
 import AddReviewButton from "../components/AddReviewButton";
 import ReviewsClientGrid from "../components/ReviewsClientGrid";
 import { getReviews } from "../lib/reviews";
+import { staticReviews } from "../lib/staticReviews";
 import type { Metadata } from "next";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Client Testimonials & Ratings | Nagpur Cranes",
@@ -13,10 +12,23 @@ export const metadata: Metadata = {
 };
 
 export default async function ReviewsPage() {
-  const reviews = await getReviews();
+  const excelReviews = await getReviews();
+
+  // Combine Excel and static reviews, avoiding duplicates by checking name and comment
+  const combinedReviews = [...excelReviews];
+  for (const staticRev of staticReviews) {
+    const isDuplicate = excelReviews.some(
+      (r) =>
+        r.name.toLowerCase() === staticRev.name.toLowerCase() &&
+        r.comment.toLowerCase() === staticRev.comment.toLowerCase()
+    );
+    if (!isDuplicate) {
+      combinedReviews.push(staticRev);
+    }
+  }
 
   // Sort by rating descending so 5-star ratings come first by default
-  const sortedReviews = [...reviews].sort((a, b) => b.rating - a.rating);
+  const sortedReviews = combinedReviews.sort((a, b) => b.rating - a.rating);
 
   return (
     <main className={styles.section} style={{ paddingTop: "140px", minHeight: "100vh" }}>

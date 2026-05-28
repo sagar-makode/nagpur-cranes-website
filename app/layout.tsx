@@ -86,7 +86,7 @@ export const metadata: Metadata = {
           "@id": `${siteData.domain}/#organization`,
           "name": siteData.companyName,
           "url": siteData.domain,
-          "logo": `${siteData.domain}/assets/logo-icon.webp`,
+          "logo": `${siteData.domain}/assets/logo.webp`,
           "image": `${siteData.domain}/assets/about-operations.webp`,
           "description": defaultSEO.description,
           "telephone": siteData.phone,

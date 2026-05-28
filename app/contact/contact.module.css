@@ -377,3 +377,11 @@
     gap: 6px;
   }
 }
+
+.fieldError {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: -4px;
+  display: block;
+}
