@@ -99,6 +99,7 @@ export default function HeroBgVideo() {
         muted
         playsInline
         preload="auto"
+        aria-hidden="true"
         style={{
           position: "absolute",
           top: 0,
@@ -110,7 +111,6 @@ export default function HeroBgVideo() {
           pointerEvents: "none",
           zIndex: 1
         }}
-        title={`${siteData.companyName} - Heavy Equipment in Action`}
       >
         <source src="/assets/hero-working.webm" type="video/webm" />
         <source src="/assets/hero-working.mp4" type="video/mp4" />
