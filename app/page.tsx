@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, User, Briefcase, Droplets, Anchor, Gem, Cpu, Compass, Activity, Eye } from "lucide-react";
+import { ArrowRight, Star, User, Briefcase, Droplets, Anchor, Gem, Cpu, Compass, Activity, Eye, MapPin } from "lucide-react";
 import HeroBgVideo from "./components/HeroBgVideo";
 import ScrollReveal from "./components/ScrollReveal";
 import CountUp from "./components/CountUp";
@@ -323,6 +323,17 @@ export default function Home() {
               referrerPolicy="no-referrer-when-downgrade"
               title={`${siteData.companyName} Location Map`}
             />
+          </div>
+          <div style={{ display: "flex", justifyContent: "center", marginTop: "24px" }}>
+            <Link
+              href="https://www.google.com/maps/dir/?api=1&destination=21.137795,78.950198"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              <MapPin size={18} />
+              <span>Get Directions</span>
+            </Link>
           </div>
         </div>
       </section>

@@ -295,6 +295,17 @@ export default function ContactClient() {
             title="Google Maps Contact Location"
           />
         </div>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "24px" }}>
+          <a
+            href="https://www.google.com/maps/dir/?api=1&destination=21.137795,78.950198"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            <MapPin size={18} />
+            <span>Get Directions</span>
+          </a>
+        </div>
       </section>
     </div>
   );
