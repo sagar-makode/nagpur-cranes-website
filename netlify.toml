@@ -1,7 +1,13 @@
 [[redirects]]
-from="/*"
-to="/index.html"
-status = 200
+  from = "/*"
+  to = "https://www.nagpurcranes.in/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 
 [build]
   command = "CI=false npm install --legacy-peer-deps && npm run build"
