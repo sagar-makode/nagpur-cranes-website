@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { X, Star, Check } from "lucide-react";
 import styles from "./FeedbackModal.module.css";
+import { siteData } from "../lib/siteData";
 
 interface FeedbackModalProps {
   isOpen: boolean;
@@ -184,7 +185,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                   id="feedback-name"
                   type="text"
                   required
-                  placeholder="e.g. Sunil Makode"
+                  placeholder={siteData.owner}
                   className={styles.input}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -196,7 +197,7 @@ export default function FeedbackModal({ isOpen, onClose }: FeedbackModalProps) {
                 <input
                   id="feedback-contact"
                   type="text"
-                  placeholder="e.g. +91 98765 43210"
+                  placeholder={siteData.phone}
                   className={styles.input}
                   value={contact}
                   onChange={(e) => setContact(e.target.value)}

@@ -123,7 +123,7 @@ function ContactContent() {
     if (emailTrimmed) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailTrimmed)) {
-        errors.email = "Please enter a valid email address (e.g. engineer@project.com).";
+        errors.email = `Please enter a valid email address (e.g. ${siteData.email}).`;
         hasError = true;
       }
     }
@@ -177,7 +177,7 @@ function ContactContent() {
               <Phone size={20} />
             </a>
             <div className={styles.contactDetails}>
-              <span>Direct Phone Line</span>
+              <span>Owner: {siteData.owner}</span>
               <a href={`tel:${siteData.phone.replace(/\s+/g, "")}`}>{siteData.phone}</a>
             </div>
           </div>
@@ -250,7 +250,7 @@ function ContactContent() {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  placeholder="e.g. Wardha Road Metro Site"
+                  placeholder={siteData.address}
                   className="input-field"
                   required
                 />
@@ -266,7 +266,7 @@ function ContactContent() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="e.g. L&T Infrastructure"
+                    placeholder={siteData.owner}
                     className="input-field"
                     required
                   />
@@ -281,7 +281,7 @@ function ContactContent() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="e.g. +91 9876543210"
+                    placeholder={siteData.phone}
                     className="input-field"
                     required
                   />
@@ -295,7 +295,7 @@ function ContactContent() {
                     name="ton"
                     value={formData.ton}
                     onChange={handleChange}
-                    placeholder="e.g. 20 T, 15 T, 5-10 T"
+                    placeholder="20 T, 15 T, 5-10 T"
                     className="input-field"
                     required
                   />
@@ -311,7 +311,7 @@ function ContactContent() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="e.g. engineer@project.com"
+                  placeholder={siteData.email}
                   className="input-field"
                 />
                 {formErrors.email && <span className={styles.fieldError}>{formErrors.email}</span>}

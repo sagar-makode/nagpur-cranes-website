@@ -100,7 +100,7 @@ export const defaultSEO = {
 
 export const siteData = {
   companyName: "NAGPUR CRANES",
-  owner: "Nagpur Cranes",
+  owner: "Mahesh Tathe",
   domain: process.env.NEXT_PUBLIC_SITE_URL || "https://www.nagpurcranes.in",
   phone: "+91 7385703929",
   email: "nagpurcranes@gmail.com",
